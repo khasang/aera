@@ -1,7 +1,15 @@
 package io.aera.controller;
 
-/**
- * Created by user on 12.06.2017.
- */
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
 public class AppController {
+    //localhost:8080/
+    @RequestMapping("/")
+    String hello(Model model){
+        model.addAllAttributes("attr","hello");
+        return "index";
+    }
 }
