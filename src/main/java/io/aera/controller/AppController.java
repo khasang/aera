@@ -8,19 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AppController {
-    
-    //private final Cat cat;
-    //@Autowired
-    //public AppController(Cat cat) {
-      //  this.cat = cat;
-    //}
-
-
+    @Autowired
+    private Cat cat;
 
     //localhost:8080/
     @RequestMapping("/")
-  public String hello(Model model){
-        model.addAttribute("attr",cat.getName());
+    public String hello(Model model) {
+        model.addAttribute("attr", cat.getName());
         return "index";
     }
 }
