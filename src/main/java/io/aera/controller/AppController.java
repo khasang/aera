@@ -14,6 +14,7 @@ public class AppController {
     //localhost:8080/
     @RequestMapping("/")
     public String hello(Model model) {
+        //cat.setName("Barsik");
         model.addAttribute("attr", cat.getName());
         return "index";
     }
