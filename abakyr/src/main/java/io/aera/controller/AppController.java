@@ -14,7 +14,7 @@ public class AppController {
     @Autowired
     private Cat cat;
 
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public String hello(Model model) {
         model.addAttribute("attr", dog.getName());
         return "index";
@@ -24,5 +24,10 @@ public class AppController {
     public String createDogTable(Model model) {
         model.addAttribute("status", cat.createDogTable());
         return "cat";
+    }
+
+    @RequestMapping("/admin/page/")
+    public String securePage(){
+        return "admin";
     }
 }

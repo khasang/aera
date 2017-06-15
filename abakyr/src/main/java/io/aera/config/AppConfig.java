@@ -3,7 +3,6 @@ package io.aera.config;
 import io.aera.model.Cat;
 import io.aera.model.Dog;
 import io.aera.model.impl.DogImpl;
-import jdk.nashorn.internal.scripts.JD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
