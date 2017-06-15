@@ -1,4 +1,4 @@
 /.idea/
 /target/
 /out/
-/util.properties
+/src/main/resources/util.properties
