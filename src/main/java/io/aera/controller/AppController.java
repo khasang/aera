@@ -1,19 +1,26 @@
 package io.aera.controller;
 
+import io.aera.model.Cat;
+import io.aera.model.Dog;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+// localhost:8080/
+@RequestMapping("/")
 public class AppController {
-    public static void main(String[] args) {
-        System.out.println("Cat");
-        System.out.println("Dog");
-        System.out.println("Hello Vorobei");
-        System.out.println("Hello World");
-        System.out.println("Hello World");
-        System.out.println("Hello Jack");
-        System.out.println("Hello Jack");
-        System.out.println("Hello Vorobei");
-        System.out.println("Hello Vorobei");
-        System.out.println("Hello Cat");
-        System.out.println("Hello Dog");
-        System.out.println("Hello Dog");
-        System.out.println("Hello Vorobei");
+    @Autowired
+    private Cat cat;
+
+    @Autowired
+    private Dog dog;
+
+    @RequestMapping()
+    public String hello(Model model){
+        model.addAttribute("catName", cat.getName());
+        model.addAttribute("dogName", dog.getName());
+        return "index";
     }
 }
