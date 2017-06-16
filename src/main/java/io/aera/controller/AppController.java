@@ -1,6 +1,7 @@
 package io.aera.controller;
 
 import io.aera.model.Cat;
+import io.aera.model.Dog;
 import io.aera.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class AppController {
     private Cat cat;
     @Autowired
     Message message;
+    @Autowired
+    private Dog dog;
 
     // localhost:8080/
     @RequestMapping("/")
@@ -21,5 +24,11 @@ public class AppController {
         model.addAttribute("attr", message.getMessage());
         //model.addAttribute("attr", cat.getName());
         return "index";
+    }
+
+    @RequestMapping("/create")
+    public String createDogTable(Model model) {
+        model.addAttribute("status", dog.createDogTable());
+        return "dog";
     }
 }
