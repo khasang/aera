@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppController {
     @Autowired
     private Cat cat;
-
     //localhost:8080/
     @RequestMapping("/")
     public String hello(Model model) {
-        //cat.setName("Barsik");
         model.addAttribute("attr", cat.getName());
         return "index";
     }
