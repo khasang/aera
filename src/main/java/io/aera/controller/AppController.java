@@ -31,4 +31,14 @@ public class AppController {
         model.addAttribute("status", dog.createDogTable());
         return "dog";
     }
+
+    @RequestMapping("/user/page")
+    public String getUser() {
+        return "page";
+    }
+
+    @RequestMapping("/admin/page")
+    public String getAdmin() {
+        return "admin";
+    }
 }
