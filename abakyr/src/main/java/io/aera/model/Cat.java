@@ -13,9 +13,9 @@ public class Cat {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public String createDogTable() {
-        jdbcTemplate.execute("DROP TABLE IF EXISTS dogs");
-        jdbcTemplate.execute("CREATE TABLE dogs(\n" +
+    public String createCatTable() {
+        jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
+        jdbcTemplate.execute("CREATE TABLE cats(\n" +
         "id INTEGER CONSTRAINT firstkey PRIMARY KEY, \n" +
         "name VARCHAR (255) NOT NULL); ");
         return "table created";
