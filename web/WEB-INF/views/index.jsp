@@ -4,6 +4,8 @@
     <title>Title</title>
 </head>
 <body>
-${attr}
+${attr}<br>
+${attr2}
+${attr3}
 </body>
 </html>

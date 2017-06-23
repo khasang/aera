@@ -17,5 +17,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         internalResourceViewResolver.setSuffix(".jsp");
         internalResourceViewResolver.setContentType("text/html;charset=utf-8");
         return internalResourceViewResolver;
+
     }
 }

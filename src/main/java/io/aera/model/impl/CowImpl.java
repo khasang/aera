@@ -1,15 +1,15 @@
 package io.aera.model.impl;
 
-import io.aera.model.Cat;
+import io.aera.model.Cow;
 
-public class CatImpl implements Cat {
-   private String name;
+public class CowImpl implements Cow {
+String name;
 
-    public CatImpl() {
+    public CowImpl(String name) {
+        this.name = name;
     }
 
-    public CatImpl(String name) {
-        this.name = name;
+    public CowImpl() {
     }
 
     @Override

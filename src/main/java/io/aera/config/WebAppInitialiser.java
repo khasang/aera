@@ -7,6 +7,7 @@ public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
+        System.out.println("WebAppInitialiser");
         return new Class[]{WebConfig.class};
     }
 
