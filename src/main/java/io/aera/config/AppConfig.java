@@ -13,6 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+@Bean
+Cat makeCat(){
+    return new CatImpl("Marsik");
+}
 
     @Bean
     public Cow cow(){
