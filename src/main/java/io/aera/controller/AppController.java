@@ -1,13 +1,8 @@
 package io.aera.controller;
 
-import io.aera.model.Cat;
-import io.aera.model.Cow;
-import io.aera.model.Dog;
-import io.aera.model.Message;
-import io.aera.model.impl.CowImpl;
+import io.aera.model.*;
 import io.aera.model.impl.DogImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +12,13 @@ public class AppController {
     @Autowired
     private Cat cat;
     @Autowired
-    Message message;
+    private Message message;//
     @Autowired // creates instance of DogImpl
-    DogImpl dog;
+    private DogImpl dog;
     @Autowired
-    Cow cow;
+     private Cow cow;
+    @Autowired
+     private Bull bull;
     //localhost:8080/
     @RequestMapping("/")
     public String hello(Model model) {
@@ -33,4 +30,9 @@ public class AppController {
         System.out.println("AppController");
         return "index";
     }
-}
+    @RequestMapping("create")
+    public  String createBullTable(Model model){
+        model.addAttribute("status", bull.createBullTable());
+        return "bull";
+    }
+}//class
