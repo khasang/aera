@@ -3,6 +3,8 @@ package io.aera.dao;
 import io.aera.entity.Story;
 import org.hibernate.Session;
 
+import java.util.List;
+
 /**
  * Basics dao operations for DAO child
  */
@@ -27,4 +29,9 @@ public interface BasicDao<T> {
      * @return entity
      */
     T getById(long id);
+
+    /**
+     * @return list from entity
+     * */
+    List<T> getList();
 }

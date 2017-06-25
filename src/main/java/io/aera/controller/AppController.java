@@ -25,9 +25,7 @@ public class AppController {
     // localhost:8080/
     @RequestMapping("/")
     public String hello(Model model){
-        message.setMessageInfo("Big and fat cat!");
-        model.addAttribute("attr", message.getMessage());
-        return "index";
+        return "story";
     }
 
     @RequestMapping("/create")

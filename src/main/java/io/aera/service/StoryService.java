@@ -2,6 +2,8 @@ package io.aera.service;
 
 import io.aera.entity.Story;
 
+import java.util.List;
+
 /**
  * Used for story functionality
  */
@@ -22,4 +24,9 @@ public interface StoryService {
      * @return Story
      */
     Story getStoryById(long storyId);
+
+    /**
+     * @return list of stories
+     */
+    List<Story> getStoryList();
 }
