@@ -1,4 +1,4 @@
-package io.aera.config;
+package io.aera.config.application;
 
 import io.aera.config.application.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

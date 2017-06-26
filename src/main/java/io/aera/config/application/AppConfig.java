@@ -1,4 +1,4 @@
-package io.aera.config;
+package io.aera.config.application;
 
 import io.aera.model.Cat;
 import io.aera.model.Dog;
