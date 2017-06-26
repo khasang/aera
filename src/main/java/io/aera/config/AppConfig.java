@@ -10,12 +10,24 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
+@PropertySource(value = {"classpath:auth.properties"})
 public class AppConfig {
     @Autowired
     private Environment environment;
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        JdbcDaoImpl jdbcDaoImpl = new JdbcDaoImpl();
+        jdbcDaoImpl.setDataSource(dataSource());
+        jdbcDaoImpl.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
+        jdbcDaoImpl.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
+        return jdbcDaoImpl;
+    }
 
     @Bean
     public Cat cat(){
