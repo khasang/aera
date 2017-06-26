@@ -1,10 +1,9 @@
-package io.aera.config;
+package io.myaera.config;
 
-import io.aera.config.application.WebConfig;
+import io.myaera.config.application.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{WebConfig.class};

@@ -1,7 +1,9 @@
 package io.aera.model.Impl;
 
 import io.aera.model.Cat;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CatImpl implements Cat{
     private String name;
 
