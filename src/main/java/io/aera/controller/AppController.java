@@ -30,9 +30,18 @@ public class AppController {
         System.out.println("AppController");
         return "index";
     }
-    @RequestMapping("create")
+    @RequestMapping("/bull")
     public  String createBullTable(Model model){
         model.addAttribute("status", bull.createBullTable());
         return "bull";
     }
+    @RequestMapping("/user/page")
+    public String getUser(){
+        return "page";
+    }
+    @RequestMapping("/admin/page")
+    public String getAdmin(){
+        return "admin";
+    }
+
 }//class
