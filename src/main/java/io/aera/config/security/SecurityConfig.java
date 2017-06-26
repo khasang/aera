@@ -35,9 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .and().csrf().disable().formLogin().defaultSuccessUrl("/", false);
+                .and().csrf().disable().formLogin().loginPage("/login").defaultSuccessUrl("/", false);
     }
 
+    /**
+     * Authentication as 'inMemory"
+     */
     /*@Override
     public void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
         authManagerBuilder.inMemoryAuthentication().withUser("user").password("user").roles("USER");

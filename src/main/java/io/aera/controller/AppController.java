@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -48,5 +49,15 @@ public class AppController {
         modelAndView.setViewName("password");
         modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(password));
         return modelAndView;
+    }
+
+    @RequestMapping("/login")
+    public String getLogin(@RequestParam(value = "error", required = false) String error,
+                           @RequestParam(value = "logout", required = false) String logout,
+                           Model model){
+        model.addAttribute("error", error!=null);
+        model.addAttribute("logout", logout!=null);
+
+        return "login";
     }
 }
