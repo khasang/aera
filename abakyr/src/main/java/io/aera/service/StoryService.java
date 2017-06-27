@@ -2,6 +2,8 @@ package io.aera.service;
 
 import io.aera.entity.Story;
 
+import java.util.List;
+
 /**
  * The main purpose is to work with a functionality of the stories
  */
@@ -13,6 +15,11 @@ public interface StoryService {
      * @return story
      */
     Story createStory(Story story);
+
+    /**
+     * @return list of stories
+     */
+    List<Story> getStoryList();
 
     /**
      * Gets Story by Id

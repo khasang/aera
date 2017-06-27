@@ -6,6 +6,8 @@ import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("storyService")
 public class StoryServiceImpl implements StoryService{
     @Autowired
@@ -14,6 +16,11 @@ public class StoryServiceImpl implements StoryService{
     @Override
     public Story createStory(Story story) {
         return (Story) storyDao.create(story);
+    }
+
+    @Override
+    public List<Story> getStoryList() {
+        return storyDao.getList();
     }
 
     @Override

@@ -20,8 +20,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String hello(Model model) {
-        model.addAttribute("attr", dog.getName());
-        return "index";
+        return "story";
     }
 
     @RequestMapping("/create")

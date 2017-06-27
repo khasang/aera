@@ -3,6 +3,8 @@ package io.aera.dao;
 import io.aera.entity.Story;
 import org.hibernate.Session;
 
+import java.util.List;
+
 /**
  * Basic dao operations with DAO children
  *
@@ -43,4 +45,9 @@ public interface BasicDao<T> {
      * @param entity
      */
     void deleteStory(T entity);
+
+    /**
+     * @return list of entities
+     */
+    List<T> getList();
 }
