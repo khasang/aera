@@ -3,11 +3,10 @@ package io.aera.config;
 import io.aera.config.application.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        System.out.println("WebAppInitialiser");
         return new Class[]{WebConfig.class};
     }
 
@@ -20,4 +19,4 @@ public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-}//class
+}
