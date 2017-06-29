@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-public class StoryDaoImpl extends BasicDaoImpl<Story> implements StoryDao {
+public class StoryDaoImpl extends BasicDaoImpl implements StoryDao {
     @Autowired
     private SessionFactory sessionFactory;
 

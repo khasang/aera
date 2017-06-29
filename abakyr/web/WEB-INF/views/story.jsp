@@ -38,10 +38,12 @@
         });
     };
 
-    var RestPut = function (client_name, client_date) {
+    var RestPut = function () {
         var JSONObject = {
-            'name': client_name,
-            'date': client_date
+            "name": $('#putName').val(),
+            "date": $('#putDate').val(),
+            "storyChapters": [{"name": $('#chapter1PutName').val(), "goldPrice": $('#chapter1PutPrice').val()},
+                {"name": $('#chapter2PutName').val(), "goldPrice": $('#chapter2PutPrice').val()}]
         };
         $.ajax({
             type: 'PUT',
@@ -60,9 +62,9 @@
         });
     };
 
-    var RestDelete = function (client_id) {
+    var RestDelete = function () {
         var JSONObject = {
-            'id': client_id
+            'id': $('#deleteId').val(),
         };
         $.ajax({
             type: "DELETE",
@@ -80,14 +82,17 @@
         });
     };
 
-    var RestUpdate = function (client_id, client_name, client_date) {
+    var RestUpdate = function () {
         var JSONObject = {
-            'id': client_id,
-            'name': client_name,
-            'date': client_date
+            "id": $('#postId').val(),
+            "name": $('#postName').val(),
+            "date": $('#postDate').val(),
+            "storyChapters":
+                [{"id": $('#postIdChapter1').val(),"name": $('#chapter1Name').val(), "goldPrice": $('#chapter1Price').val()},
+                {"id": $('#postIdChapter2').val(),"name": $('#chapter2Name').val(), "goldPrice": $('#chapter2Price').val()}]
         };
         $.ajax({
-            type: "PUT",
+            type: 'PUT',
             url: service + "/update/story",
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(JSONObject),
@@ -117,8 +122,15 @@
         <td>GET Story by ID</td>
         <td><code><strong>GET</strong>/get/story/{id}</code></td>
         <td>
-            Id: <input id = "getStoryId" value=""/>
+            Id:<br> <input id = "getStoryId" value=""/>
             <button type="button" onclick="RestGet($('#getStoryId').val())">Try</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Get All Stories</td>
+        <td><code><strong>GET</strong>/all</code></td>
+        <td>
+            <button type="button" onclick="RestGetAll()">Try</button>
         </td>
     </tr>
     <tr>
@@ -126,37 +138,52 @@
         <td><code><strong>PUT</strong>/story/add</code></td>
         <td>
             <form class="form-inline">
-                name: <input type="text" id="putName" value="storyName"/>
-                date: <input type="date" id="putDate" value="storyDate"/>
-                <button type="button" onclick="RestPut($('#putName, #putDate').val())">Try</button>
+                name:<br> <input type="text" id="putName" value="storyName"/>
+                <br>
+                date:<br> <input type="date" id="putDate" value="storyDate"/>
+                <br>
+                chapters:<form method="post">
+                    <br>
+                    <input type="text" id="chapter1PutName" value="Chapter1Name"/>
+                    <input type="text" id="chapter1PutPrice" value="Chapter1Price"/>
+                    <br>
+                    <input type="text" id="chapter2PutName" value="Chapter2Name"/>
+                    <input type="text" id="chapter2PutPrice" value="Chapter2Price"/>
+                </form>
+                <button type="button" onclick="RestPut()">Try</button>
             </form>
-        </td>
-    </tr>
-    <tr>
-        <td>All Stories</td>
-        <td><code><strong>GET</strong>/all</code></td>
-        <td>
-            GET All: <p id="getAllStories" value=""></p>
-            <button type="button" onclick="RestGetAll($('#getAllStories'))">Try</button>
         </td>
     </tr>
     <tr>
         <td>Delete Story</td>
         <td><code><strong>DELETE</strong>/delete/story</code></td>
         <td>
-            Id: <input type="text", id="deleteId" value="storyId"/>
-            <button type="button" onclick="RestDelete($('#deleteId').val())">Try</button>
+            Id:<br> <input type="text", id="deleteId" value="storyId"/>
+            <button type="button" onclick="RestDelete()">Try</button>
         </td>
     </tr>
     <tr>
         <td>Update Story</td>
-        <td><code><<strong>PUT</strong>/update/story</code></td>
+        <td><code><strong>PUT</strong>/update/story</code></td>
         <td>
             <form class="form-inline">
-                id: <input type="number" id="updateId" value="storyId"/>
-                name: <input type="text" id="updateName" value="storyName"/>
-                date: <input type="date" id="updateDate" value="storyDate"/>
-                <button type="button" onclick="RestUpdate($('#updateName, #updateDate, #updateId').val())">Try</button>
+                id:<br> <input type="text" id="postId" value=""/>
+                <br>
+                name:<br> <input type="text" id="postName" value="storyName"/>
+                <br>
+                date:<br> <input type="date" id="postDate" value="storyDate"/>
+                <br>
+                chapters:<form method="post">
+                    <br>
+                    <input type="text" id="postIdChapter1" value=""/>
+                    <input type="text" id="chapter1Name" value="Chapter1Name"/>
+                    <input type="text" id="chapter1Price" value="Chapter1Price"/>
+                    <br>
+                    <input type="text" id="postIdChapter2" value=""/>
+                    <input type="text" id="chapter2Name" value="Chapter2Name"/>
+                    <input type="text" id="chapter2Price" value="Chapter2Price"/>
+                </form>
+                <button type="button" onclick="RestUpdate()">Try</button>
             </form>
         </td>
     </tr>

@@ -1,8 +1,6 @@
 package io.aera.dao;
 
-import io.aera.entity.Story;
 import org.hibernate.Session;
-
 import java.util.List;
 
 /**
@@ -35,7 +33,7 @@ public interface BasicDao<T> {
      * Updates entity in the database
      *
      * @param entity
-     * @return entity
+     * @return Updated entity
      */
     T updateStory(T entity);
 

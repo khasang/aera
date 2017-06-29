@@ -1,6 +1,5 @@
 package io.aera.model;
 
-
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class Cat {
@@ -16,8 +15,8 @@ public class Cat {
     public String createCatTable() {
         jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
         jdbcTemplate.execute("CREATE TABLE cats(\n" +
-        "id INTEGER CONSTRAINT firstkey PRIMARY KEY, \n" +
-        "name VARCHAR (255) NOT NULL); ");
+                "id INTEGER CONSTRAINT firstkey PRIMARY KEY, \n" +
+                "name VARCHAR (255) NOT NULL); ");
         return "table created";
     }
 }

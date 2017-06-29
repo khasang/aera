@@ -5,7 +5,6 @@ import io.aera.entity.Story;
 import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service("storyService")

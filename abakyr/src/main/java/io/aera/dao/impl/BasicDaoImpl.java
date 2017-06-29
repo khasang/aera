@@ -1,11 +1,9 @@
 package io.aera.dao.impl;
 
 import io.aera.dao.BasicDao;
-import io.aera.entity.Story;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -13,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public abstract class BasicDaoImpl<T> implements BasicDao {
+public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     private final Class<T> entityClass;
 
     @Autowired
@@ -29,7 +27,7 @@ public abstract class BasicDaoImpl<T> implements BasicDao {
     }
 
     @Override
-    public Object create(Object entity) {
+    public T create(T entity) {
         getCurrentSession().save(entity);
         return entity;
     }
@@ -49,13 +47,13 @@ public abstract class BasicDaoImpl<T> implements BasicDao {
     }
 
     @Override
-    public Object updateStory(Object entity) {
-        getCurrentSession().saveOrUpdate(entity);
+    public T updateStory(T entity) {
+        getCurrentSession().update(entity);
         return entity;
     }
 
     @Override
-    public void deleteStory(Object entity) {
+    public void deleteStory(T entity) {
         getCurrentSession().delete(entity);
     }
 }
