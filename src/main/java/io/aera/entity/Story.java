@@ -1,5 +1,7 @@
 package io.aera.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Story
     @Column(name = "name", nullable = false)
     private String name;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_created", nullable = false)
     private Date dateCreated = new Date();
 

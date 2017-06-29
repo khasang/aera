@@ -1,5 +1,8 @@
 package io.aera.config.application;
 
+import io.aera.dao.StoryDao;
+import io.aera.dao.impl.StoryDaoImpl;
+import io.aera.entity.Story;
 import io.aera.model.Cat;
 import io.aera.model.Dog;
 import io.aera.model.impl.CatImpl;
@@ -54,5 +57,10 @@ public class AppConfig {
     @Bean
     Dog dog(){
         return new Dog(jdbcTemplate());
+    }
+
+    @Bean
+    StoryDao storyDao(){
+        return new StoryDaoImpl(Story.class);
     }
 }
