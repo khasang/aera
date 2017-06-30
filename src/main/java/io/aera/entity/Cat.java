@@ -7,18 +7,8 @@ import javax.persistence.*;
 @Table(name = "cats")
 
 public class Cat {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cat_id")
-    private long id;
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Cat() {
     }
 
     public long getId() {
@@ -28,4 +18,21 @@ public class Cat {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cat_id")
+    private long id;
+    @Column(name = "cat_name")
+    private String name;
+
+
 }//class

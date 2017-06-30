@@ -61,4 +61,4 @@ public class HibernateConfig {
         txManager.setSessionFactory(s);
         return txManager;
     }
-}//class
+}//cl ass
