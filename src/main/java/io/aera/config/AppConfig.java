@@ -1,5 +1,8 @@
 package io.aera.config;
 
+import io.aera.dao.StoryDao;
+import io.aera.dao.impl.StoryDaoImpl;
+import io.aera.entity.Story;
 import io.aera.model.Bull;
 import io.aera.model.Cat;
 import io.aera.model.Cow;
@@ -35,6 +38,11 @@ public class AppConfig {
     @Bean
     Cat makeCat() {
         return new CatImpl("Marsik");
+    }
+
+    @Bean
+    StoryDao storyDao(){
+        return new StoryDaoImpl(Story.class);
     }
 
     @Bean

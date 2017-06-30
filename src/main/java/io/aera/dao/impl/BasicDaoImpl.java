@@ -27,4 +27,9 @@ protected SessionFactory sessionFactory;
         getCurrentSession().save(entity);
         return entity;
     }
+
+    @Override
+    public T getById(long id) {
+        return getCurrentSession().get(entityClass,id);
+    }
 }//class
