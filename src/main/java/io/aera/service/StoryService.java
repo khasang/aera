@@ -2,6 +2,8 @@ package io.aera.service;
 
 import io.aera.entity.Story;
 
+import java.util.List;
+
 /**
  * Used for story functionality
  */
@@ -26,4 +28,17 @@ public interface StoryService {
      * @param storyID - unique story ID
      */
     void deleteStory(Long storyID);
+
+    /**
+     * Get all story entities from database
+     * @return list of stories
+     */
+    List<Story> getAllStories();
+
+    /**
+     * Update existing story     *
+     * @param story
+     * @return updated story
+     */
+    Story updateStory(Story story);
 }

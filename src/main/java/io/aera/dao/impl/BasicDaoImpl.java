@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public abstract class BasicDaoImpl<T> implements BasicDao<T> {
@@ -39,5 +42,19 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         if(deletedEntity!=null){
             getCurrentSession().delete(deletedEntity);
         }
+    }
+
+    @Override
+    public T updateEntity(T entity) {
+        getCurrentSession().update(entity);
+        return entity;
+    }
+
+    @Override
+    public List<T> getAllEnities() {
+        CriteriaBuilder criteria = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteria.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
 }

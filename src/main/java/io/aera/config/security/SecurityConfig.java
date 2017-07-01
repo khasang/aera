@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    public void cinfigAuthentication(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
+    public void configAuthentication(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
         authManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 

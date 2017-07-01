@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/story")
 @Controller
 public class StoryController {
@@ -24,10 +26,22 @@ public class StoryController {
         return storyService.getStoryById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Story> getAllStories(){
+        return storyService.getAllStories();
+    }
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteStory(@PathVariable(value = "id") String id){
         storyService.deleteStory(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset-utf-8")
+    @ResponseBody
+    public Story updateStory(@RequestBody Story story){
+        return storyService.updateStory(story);
     }
 
 }

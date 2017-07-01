@@ -1,5 +1,7 @@
 package io.aera.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -18,9 +20,14 @@ public class Chapter {
     @Column(name = "price")
     private BigDecimal goldPrices;
 
-    @Basic(fetch = FetchType.LAZY)
+    /*@Basic(fetch = FetchType.LAZY)
     @Column(name = "file_data")
-    private byte[] file_data;
+    private byte[] file_data;*/
+
+    @ManyToOne
+    @JoinColumn(name = "story_id", foreignKey = @ForeignKey(name = "STORY_ID_FK"))
+    private Story story;
+
 
     public BigDecimal getGoldPrices() {
         return goldPrices;
@@ -46,11 +53,21 @@ public class Chapter {
         this.name = name;
     }
 
-    public byte[] getFile_data() {
+    public Story getStory() {
+        return story;
+    }
+
+    public void setStory(Story story) {
+        this.story = story;
+    }
+
+    /*public byte[] getFile_data() {
         return file_data;
     }
 
     public void setFile_data(byte[] file_data) {
         this.file_data = file_data;
-    }
+    }*/
+
+
 }
