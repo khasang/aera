@@ -1,4 +1,4 @@
-package io.myaera.config.application;
+package io.aera.config.application;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.myaera.config", "io.myaera.controller", "io.myaera.model"})
+@ComponentScan({"io.aera.config", "io.aera.controller", "io.aera.model", "io.aera.service", "io.aera.dao"})
 public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public InternalResourceViewResolver viewResolver() {

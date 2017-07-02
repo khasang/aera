@@ -1,4 +1,4 @@
-package io.myaera.config;
+package io.aera.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
