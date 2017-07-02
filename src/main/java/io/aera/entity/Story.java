@@ -13,7 +13,7 @@ public class Story {
     @Column(name = "story_id")
     private long id;
     private String name;
-//    private Date date;
+    private Date date;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Chapter> storyChapters = new ArrayList<>();
 
@@ -25,13 +25,13 @@ public class Story {
         this.storyChapters = storyChapters;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getName() {
 
