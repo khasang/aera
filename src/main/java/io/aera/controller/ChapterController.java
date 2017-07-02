@@ -35,4 +35,16 @@ public class ChapterController {
     public Chapter updateChapter(@RequestBody Chapter chapter){
         return chapterService.updateChapter(chapter);
     }
+
+    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Chapter getChapterById(@PathVariable(value = "id") String id){
+        return chapterService.getChapterById(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteChapter(@PathVariable(value = "id") String id){
+        chapterService.deleteChapter(Long.parseLong(id));
+    }
 }

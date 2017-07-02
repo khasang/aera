@@ -34,7 +34,7 @@ public interface ChapterService {
      * Delete chapter from database by ID.
      * @param chapterID - unique chapter ID
      */
-    void deleteStory(long chapterID);
+    void deleteChapter(long chapterID);
 
     /**
      * Get all chapter entities from database

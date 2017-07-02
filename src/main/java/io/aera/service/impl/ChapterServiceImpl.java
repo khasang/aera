@@ -43,7 +43,7 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public void deleteStory(long chapterID) {
+    public void deleteChapter(long chapterID) {
         chapterDao.deleteById(chapterID);
     }
 
