@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.aera.config", "io.aera.controller", "io.aera.model"})
+@ComponentScan({"io.aera.config", "io.aera.controller", "io.aera.model", "io.aera.service", "io.aera.dao"})
 
 public class WebConfig extends WebMvcConfigurerAdapter {
 

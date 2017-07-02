@@ -1,6 +1,5 @@
 package io.aera.dao.impl;
 
-import io.aera.dao.BasicDao;
 import io.aera.dao.StoryDao;
 import io.aera.entity.Story;
 import org.hibernate.SessionFactory;

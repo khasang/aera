@@ -14,7 +14,7 @@ public class Story {
     private long id;
 
     private String name;
-    private Date date;
+    //private Date date;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Chapter> storyChapter = new ArrayList<>();
@@ -44,11 +44,11 @@ public class Story {
         this.id = id;
     }
 
-    public Date getDate() {
+    /*public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
-    }
+    }*/
 }
