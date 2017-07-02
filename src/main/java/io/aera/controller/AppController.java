@@ -28,13 +28,13 @@ public class AppController {
     //localhost:8080/
     @RequestMapping("/")
     public String hello(Model model) {
-        message.setMessageInfo("Big and fat cat");
-        dog.setName("Rex");
-        model.addAttribute("attr", cat.getName() + " " + message.getMessage());
-        model.addAttribute("attr2", dog.getName());
-        model.addAttribute("attr3", cow.getName());
-        System.out.println("AppController");
-        return "index";
+        //message.setMessageInfo("Big and fat cat");
+        //dog.setName("Rex");
+        //model.addAttribute("attr", cat.getName() + " " + message.getMessage());
+        //model.addAttribute("attr2", dog.getName());
+        //model.addAttribute("attr3", cow.getName());
+        //System.out.println("AppController");
+        return "story";
     }
 
     @RequestMapping("/bull")

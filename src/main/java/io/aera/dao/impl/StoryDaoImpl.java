@@ -10,7 +10,8 @@ public class StoryDaoImpl extends BasicDaoImpl<Story> implements StoryDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public StoryDaoImpl(Class<Story> entityClass) {
+    public StoryDaoImpl(Class<Story> entityClass)
+    {
         super(entityClass);
     }
 }

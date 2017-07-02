@@ -5,13 +5,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public abstract class BasicDaoImpl<T> implements BasicDao<T> {
-private final Class<T> entityClass;
-@Autowired
-protected SessionFactory sessionFactory;
+    private final Class<T> entityClass;
+    @Autowired
+    protected SessionFactory sessionFactory;
 
     protected BasicDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -30,6 +34,22 @@ protected SessionFactory sessionFactory;
 
     @Override
     public T getById(long id) {
-        return getCurrentSession().get(entityClass,id);
+        return getCurrentSession().get(entityClass, id);
+    }
+
+    @Override
+    public List<T> getList() {
+        CriteriaBuilder builder = getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = builder.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
+
+    }
+
+    @Override
+    public T update(T entity) {
+         getCurrentSession().update(entity);
+        return entity;
     }
 }//class
