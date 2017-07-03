@@ -23,12 +23,12 @@
             }
         });
     };
-    var RestPut = function (name, dateCreated, chapters, imageBackground) {
+    var RestPut = function (name, description) {
         var JSONObject = {
             'name': name,
-            'dateCreated': dateCreated,
-            'chapters': [],
-            'imageBackground': imageBackground
+            'description': description,
+            'date': new Date().getUTCDate(),
+            'chapters': null
         };
         $.ajax({
             type: 'PUT',
@@ -46,18 +46,18 @@
         });
     };
 
-    var restStoryUpdate = function (id, name, dateCreated, chapters, imageBackground) {
+    var RestUpdate = function () {
         var JSONObject = {
-            'id': id,
-            'name': name,
-            'dateCreated': dateCreated,
-            'chapters': chapters,
-            'imageBackground': imageBackground
+            'id': $('#storyId_update').val(),
+            'name': $('#storyName_update').val(),
+            'description': $('#storyDescription_update').val(),
+            'date': new Date().getUTCDate(),
+            'chapters': $('#chapters_update').val() == "" ? null : $('#chapters_update').val()
         };
         $.ajax({
             type: 'POST',
-            utl: service + "/update",
-            contentType: 'application/json;charset=utf-8',
+            url: service + "/update",
+            contentType: "application/json; charset=utf-8",
             data: JSON.stringify(JSONObject),
             dataType: 'json',
             async: false,
@@ -65,10 +65,11 @@
                 $('#response').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#responce').html(JSON.stringify(jqXHR))
+                $('#response').html(JSON.stringify(jgXHR))
             }
-        })
+        });
     };
+
 
     var getAllStories = function () {
         $.ajax ({
@@ -132,9 +133,12 @@
                 <td><code><strong>PUT</strong>/story/add</code></td>
                 <td>
                     <form class="form-inline">
-                        name: <input type="text" id="putName" value="">
-                        <button type="button" onclick="RestPut($('#putName').val(),
-                         new Date(), null, null)">Try</button>
+                        name: <input type="text" id="addName" value="">
+                        description: <input type="text" id="addDescription" value="">
+                        <button type="button" onclick="RestPut(
+                            $('#addName').val(),
+                            $('#addDescription').val()
+                        )">Try</button>
                     </form>
                 </td>
             </tr>
@@ -142,16 +146,13 @@
                 <td>Update story</td>
                 <td><code><strong>POST</strong>/story/update</code></td>
                 <td>
-                    id: <input type="text" id="storyId_update" value=""><br/>
-                    name: <input type="text" id="storyName_update" value=""><br/>
-                    dateCreated: <input type="datetime-local" id="dateCreated_update">
-                    <button type="button" onclick="restStoryUpdate(
-                        $('#storyId_update').val(),
-                        $('#storyName_update').val(),
-                        $('#dateCreated_update').val(),
-                        null,
-                        null
-                    )">Try</button>
+                    <form class="form-inline">
+                        id: <input type="text" id="storyId_update" value=""><br/>
+                        name: <input type="text" id="storyName_update" value=""><br/>
+                        description: <input type="text" id="storyDescription_update" value=""><br/>
+                        chapters: <input type="text" id="chapters_update" value=""><br/>
+                        <button type="button" onclick="RestUpdate()">Try</button>
+                    </form>
                 </td>
             </tr>
             <tr>

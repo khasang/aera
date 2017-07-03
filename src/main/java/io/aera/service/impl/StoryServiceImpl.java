@@ -37,6 +37,6 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public Story updateStory(Story story) {
-        return (Story) storyDao.updateEntity(story);
+        return storyDao.updateEntity(story);
     }
 }

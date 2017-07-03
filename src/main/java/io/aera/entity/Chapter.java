@@ -17,7 +17,6 @@ public class Chapter {
     @Column(name="name", nullable = false)
     private String name;
 
-    @Column(name = "price")
     private BigDecimal goldPrices;
 
     /*@Basic(fetch = FetchType.LAZY)

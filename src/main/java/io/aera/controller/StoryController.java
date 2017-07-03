@@ -14,7 +14,7 @@ public class StoryController {
     @Autowired
     private StoryService storyService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset-utf-8")
+    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Story addStory(@RequestBody Story story){
         return storyService.createStory(story);
@@ -38,7 +38,7 @@ public class StoryController {
         storyService.deleteStory(Long.parseLong(id));
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset-utf-8")
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Story updateStory(@RequestBody Story story){
         return storyService.updateStory(story);

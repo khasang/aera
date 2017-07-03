@@ -16,20 +16,23 @@ public class Story
     @Column(name = "story_id")
     private long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    private String description;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "date_created", nullable = false)
+    @Column(name = "date", nullable = false)
     private Date dateCreated = new Date();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @Column(name = "chapters")
     private List<Chapter> chapters = new ArrayList<>();
 
-    @Lob
+    /*@Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "image_background")
-    private byte[] imageBackground;
+    private byte[] imageBackground;*/
 
     public long getId() {
         return id;
@@ -63,11 +66,19 @@ public class Story
         this.dateCreated = dateCreated;
     }
 
-    public byte[] getImageBackground() {
+    /*public byte[] getImageBackground() {
         return imageBackground;
     }
 
     public void setImageBackground(byte[] imageBackground) {
         this.imageBackground = imageBackground;
+    }*/
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
