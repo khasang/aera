@@ -4,6 +4,8 @@
     <title>List usages</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+
 </head>
 
 <script type="text/javascript">
@@ -45,6 +47,7 @@
 </script>
 
 <body>
+
     <table class="table">
         <thead/>
         <tr>
@@ -72,11 +75,7 @@
         </tr>
     </table>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <strong>RESPONSE</strong>
-        </div>
-        <div class="panel-body" id="response"></div>
-    </div>
+
+<
 </body>
 </html>
