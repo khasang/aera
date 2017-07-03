@@ -4,7 +4,6 @@ import io.aera.dao.StoryDao;
 import io.aera.dao.impl.StoryDaoImpl;
 import io.aera.entity.Story;
 import io.aera.model.Cat;
-import io.aera.model.Dog;
 import io.aera.model.impl.CatImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,10 +56,5 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    Dog dog(){
-        return new Dog(jdbcTemplate());
     }
 }
