@@ -135,6 +135,7 @@
                 <version>2.6</version>
                 <configuration>
                     <warSourceDirectory>${basedir}/web</warSourceDirectory>
+                    <warSourceDirectory>${basedir}/web/WEB-INF/views/js</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>

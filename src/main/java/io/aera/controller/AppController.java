@@ -23,8 +23,8 @@ public class AppController {
     // localhost:8080/
     @RequestMapping("/")
     public String hello(Model model){
-        model.addAttribute("attr", cat.getName());
-        return "index";
+        //model.addAttribute("attr", cat.getName());
+        return "story";
     }
 
     @RequestMapping("/create")
