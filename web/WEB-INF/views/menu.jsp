@@ -63,7 +63,7 @@
             success: function(result){
                 result.forEach(function (item) {
                 console.log(item.name);
-
+                clear();
                 document.getElementById('response').innerHTML += item.name + "<br>";
                 });
                 //$('#response').html(JSON.stringify(result));
@@ -80,7 +80,9 @@
         alert("end")
     };
 
-
+    function clear() {
+        document.getElementById('response').innerHTML = '';
+    }
 </script>
 <body>
 
