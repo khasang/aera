@@ -29,4 +29,6 @@ public interface StoryService {
      * @return list of stories
      */
     List<Story> getStoryList();
+
+    Story deleteStory(long id);
 }

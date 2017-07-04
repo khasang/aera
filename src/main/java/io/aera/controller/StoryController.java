@@ -32,4 +32,10 @@ public class StoryController {
         return storyService.getStoryById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Story deleteStory(@PathVariable(value = "id") String inputId) {
+        return storyService.deleteStory(Long.parseLong(inputId));
+    }
+
 }

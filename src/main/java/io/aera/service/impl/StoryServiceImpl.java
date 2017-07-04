@@ -27,4 +27,9 @@ public class StoryServiceImpl implements StoryService {
     public Story getStoryById(long storyId) {
         return storyDao.getById(storyId);
     }
+
+    @Override
+    public Story deleteStory(long id) {
+        return storyDao.delete(storyDao.getById(id));
+    }
 }

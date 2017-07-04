@@ -1,6 +1,7 @@
 package io.aera.dao.impl;
 
 import io.aera.dao.BasicDao;
+import io.aera.entity.Story;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,11 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     @Override
     public T getById(long id) {
         return getCurrentSession().get(entityClass, id);
+    }
+
+    @Override
+    public T delete(T entity) {
+        getCurrentSession().delete(entity);
+        return entity;
     }
 }

@@ -34,4 +34,6 @@ public interface BasicDao<T> {
      * @return list from entity
      * */
     List<T> getList();
+
+    T delete(T entity);
 }
