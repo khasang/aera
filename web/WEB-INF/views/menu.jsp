@@ -60,12 +60,7 @@
             async: false,
             success: function(result){
                 result.forEach(function (item) {
-                //console.log(item.name);
-
-                   // document.getElementById('response')
-                    //this.innerHTML = ' ';
-                    document.getElementById('response').innerHTML += item.name +" -- " + item.description + "<br>";
-
+                    document.getElementById('response').innerHTML += "id - " + item.id + "   " +  item.name +" -- " + item.description + "<br>";
                 });
                 //$('#response').html(JSON.stringify(result));
             },
@@ -83,9 +78,6 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-               // document.getElementById('content').innerHTML = result.name;
-                console.log("!!!");
-                //console.log(result.description);
                 $('#content').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
