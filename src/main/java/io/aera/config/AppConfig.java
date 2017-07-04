@@ -1,7 +1,10 @@
 package io.aera.config;
 
+import io.aera.dao.PersonageDao;
 import io.aera.dao.StoryDao;
+import io.aera.dao.impl.PersonageDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
+import io.aera.entity.Personage;
 import io.aera.entity.Story;
 import io.aera.model.Cat;
 import io.aera.model.Dog;
@@ -40,6 +43,11 @@ public class AppConfig {
     @Bean
     StoryDao storyDao(){
         return new StoryDaoImpl(Story.class);
+    }
+
+    @Bean
+    PersonageDao personageDao() {
+        return new PersonageDaoImpl(Personage.class);
     }
 
     @Bean

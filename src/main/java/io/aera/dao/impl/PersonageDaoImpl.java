@@ -1,15 +1,15 @@
 package io.aera.dao.impl;
 
-import io.aera.dao.StoryDao;
-import io.aera.entity.Story;
+import io.aera.dao.PersonageDao;
+import io.aera.entity.Personage;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class StoryDaoImpl extends BasicDaoImpl<Story> implements StoryDao {
+public class PersonageDaoImpl extends BasicDaoImpl<Personage> implements PersonageDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public StoryDaoImpl(Class<Story> entityClass) {
+    public PersonageDaoImpl(Class<Personage> entityClass) {
         super(entityClass);
     }
 }
