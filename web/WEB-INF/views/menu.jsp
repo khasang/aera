@@ -79,9 +79,7 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-                // document.getElementById('content').innerHTML = result.name;
                 console.log("!!!");
-                //console.log(result.description);
                 $('#content').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
