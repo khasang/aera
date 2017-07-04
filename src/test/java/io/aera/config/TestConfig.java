@@ -17,10 +17,10 @@ public class TestConfig {
     @Bean
     DriverManagerDataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(testEnvironment.getProperty("jdbc.postgresql.driver"));
-        dataSource.setUrl(testEnvironment.getProperty("jdbc.postgresql.url"));
-        dataSource.setUsername(testEnvironment.getProperty("jdbc.postgresql.username"));
-        dataSource.setPassword(testEnvironment.getProperty("jdbc.postgresql.password"));
+        dataSource.setDriverClassName(testEnvironment.getProperty("test.jdbc.postgresql.driver"));
+        dataSource.setUrl(testEnvironment.getProperty("test.jdbc.postgresql.url"));
+        dataSource.setUsername(testEnvironment.getProperty("test.jdbc.postgresql.username"));
+        dataSource.setPassword(testEnvironment.getProperty("test.jdbc.postgresql.password"));
         return dataSource;
     }
 
