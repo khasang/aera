@@ -121,7 +121,7 @@
  </div>
  <div class="content" id="content" ></div>
  <div class="footer" ></div>
-=======
+
 <div class="header"><h1>AERA</h1></div>
 <div class="navigation">
     <a style="color: white" href="javascript:void(0);"  onclick="GetAllStories();return false;">STORIES</a>
