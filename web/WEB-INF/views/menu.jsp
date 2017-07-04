@@ -62,7 +62,6 @@
                 result.forEach(function (item) {
                     document.getElementById('response').innerHTML += "id - " + item.id + "   " +  item.name +" -- " + item.description + "<br>";
                 });
-                //$('#response').html(JSON.stringify(result));
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 $('#response').html(JSON.stringify(igXHR))
@@ -117,9 +116,7 @@
      <button type="button" onclick="PutStoryName($('#ptName').val())">Try</button>
  </div>
  <div class="sidebar" widt="200" id="response">
-     <%--<div class="sidebarHeader">
 
-     </div>--%>
  </div>
  <div class="content" id="content" ></div>
  <div class="footer" ></div>
