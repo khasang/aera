@@ -49,7 +49,6 @@
 </head>
 <!-- Makes request-string for storyController and returns  -->
 <!-- get all stories  -->
-
 <script type="text/javascript">
     var service = "/story";
     var GetAllStories = function () {
@@ -58,19 +57,19 @@
             url: service + "/all",
             dataType: 'json',
             async: false,
-            success: function(result){
+            success: function (result) {
                 result.forEach(function (item) {
-                    document.getElementById('response').innerHTML += "id - " + item.id + "   " +  item.name +" -- " + item.description + "<br>";
+                    document.getElementById('response').innerHTML += item.name + " -- " + item.description + "<br>";
                 });
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                $('#response').html(JSON.stringify(igXHR))
+                $('#response').html(JSON.stringify(jgXHR))
             }
         });
     };
 
     // gets story by id
-        var GetStoryById = function (id) {
+    var GetStoryById = function (id) {
         $.ajax({
             type: 'GET',
             url: service + "/get/story/" + id,
@@ -84,7 +83,8 @@
             }
         });
     };
-        //put story name
+
+    //add new story - put name
     var PutStoryName = function (client_name) {
         var JSONObject = {
             'name': client_name
@@ -108,6 +108,7 @@
 </script>
 <body>
 
+<<<<<<< HEAD
  <div class="header"><h1>AERA</h1></div>
  <div class="navigation" ><A style="color: white" HREF="javascript:void(0);" OnClick="Javascript:GetAllStories();return false;">STORIES</a>
      Get Story by id <input type="text" id="putName" value=""/>
@@ -120,6 +121,20 @@
  </div>
  <div class="content" id="content" ></div>
  <div class="footer" ></div>
+=======
+<div class="header"><h1>AERA</h1></div>
+<div class="navigation">
+    <a style="color: white" href="javascript:void(0);"  onclick="GetAllStories();return false;">STORIES</a>
+    Get Story by id <input type="text" id="story_id" value=""/>
+    <button type="button" onclick="GetStoryById($('#story_id').val())">Try</button>
+    Put Story name: <input type="text" id="putStoryName" value=""/>
+    <button type="button" onclick="PutStoryName($('#putStoryName').val())">Try</button>
+</div>
+<div class="sidebar" widt="200" id="response">
+</div>
+<div class="content" id="content"></div>
+<div class="footer"></div>
+>>>>>>> origin/EugeniOleg
 
 </body>
 </html>
