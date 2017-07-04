@@ -79,7 +79,6 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-                console.log("!!!");
                 $('#content').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
