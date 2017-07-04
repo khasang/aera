@@ -9,7 +9,8 @@ public interface UserService {
     /**
      * Register new user
      * @param user - new User
-     * @return boolean, true if register complete successfully, false if register failed
+     * @return registered user if success, null otherwise
      */
-    boolean register(User user);
+    User register(User user);
+
 }

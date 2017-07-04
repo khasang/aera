@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public boolean register(User user) {
-        return userDao.create(user) != null;
+    public User register(User user) {
+        return userDao.create(user);
     }
 }

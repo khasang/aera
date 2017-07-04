@@ -3,7 +3,7 @@ package io.aera.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "players")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
