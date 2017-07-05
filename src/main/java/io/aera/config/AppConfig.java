@@ -2,13 +2,17 @@ package io.aera.config;
 
 import io.aera.dao.PersonageDao;
 import io.aera.dao.StoryDao;
+import io.aera.dao.TypePersonageDao;
 import io.aera.dao.impl.PersonageDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
+import io.aera.dao.impl.TypePersonageDaoImpl;
 import io.aera.entity.Personage;
 import io.aera.entity.Story;
+import io.aera.entity.TypePersonage;
 import io.aera.model.Cat;
 import io.aera.model.Dog;
 import io.aera.model.impl.CatImpl;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +22,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+
+import java.util.List;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
@@ -48,6 +54,11 @@ public class AppConfig {
     @Bean
     PersonageDao personageDao() {
         return new PersonageDaoImpl(Personage.class);
+    }
+
+    @Bean
+    TypePersonageDao typePersonageDao() {
+        return new TypePersonageDaoImpl(TypePersonage.class);
     }
 
     @Bean

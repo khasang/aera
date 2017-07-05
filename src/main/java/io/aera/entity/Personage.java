@@ -13,8 +13,10 @@ public class Personage {
     private long id;
     @Column(name = "pers_name")
     private String name;
-    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    //private List<TypePerson> storyChapters = new ArrayList<>();
+    @Column(name = "pers_level")
+    private int level;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<TypePersonage> typePersonage = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -30,5 +32,21 @@ public class Personage {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public List<TypePersonage> getTypePersonage() {
+        return typePersonage;
+    }
+
+    public void setTypePersonage(List<TypePersonage> typePersonage) {
+        this.typePersonage = typePersonage;
     }
 }
