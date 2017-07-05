@@ -14,7 +14,7 @@ public class User {
     private String password;
     private String email;
     @Column(name = "role_id")
-    private String roleId;
+    private int roleId;
 
     public long getId() {
         return id;
@@ -64,11 +64,11 @@ public class User {
         this.email = email;
     }
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 }

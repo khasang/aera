@@ -13,3 +13,12 @@
     content: '*';
     color: red;
 }
+
+.form-group > .help-block {
+    color: red;
+    display: none;
+}
+
+.form-group.has-error > .help-block {
+    display: block;
+}

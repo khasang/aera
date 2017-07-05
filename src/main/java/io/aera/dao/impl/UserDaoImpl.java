@@ -5,17 +5,25 @@ import io.aera.entity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @Qualifier("userDao")
 public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     @Autowired
-    private SessionFactory sessionFactory;
+    private PasswordEncoder passwordEncoder;
 
     public UserDaoImpl() { super(User.class); }
 
     public UserDaoImpl(Class<User> entityClass) {
         super(entityClass);
+    }
+
+    @Override
+    public User create(User entity) {
+        entity.setRoleId(1);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return super.create(entity);
     }
 }

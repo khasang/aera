@@ -19,7 +19,7 @@ public class UserTest {
     @Test
     @Parameters(method = "getUser")
     public void createNewUserSuccessfully(long id, String login, String firstname,
-                                          String lastname, String password, String email, String role){
+                                          String lastname, String password, String email, int role){
         User user = new User();
         user.setId(id);
         user.setLogin(login);
