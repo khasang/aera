@@ -32,4 +32,15 @@ public class StoryController {
         return storyService.getStoryById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Story updateStory(@RequestBody Story story) {
+        return storyService.updateStory(story);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteStory(@PathVariable(value = "id") String id) {
+        storyService.deleteStoryById(Long.parseLong(id));
+    }
 }

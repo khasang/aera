@@ -32,4 +32,15 @@ public class PersonageController {
         return personageService.getPersonageById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Personage updatePersonage(@RequestBody Personage personage) {
+        return personageService.updatePersonage(personage);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deletePersonage(@PathVariable(value = "id") String id) {
+        personageService.deletePersonageById(Long.parseLong(id));
+    }
 }

@@ -29,4 +29,20 @@ public interface PersonageService {
      * @return list of personages
      */
     List<Personage> getPersonageList();
+
+    /**
+     * Update Personage at database
+     *
+     * @param personage - Personage for update
+     * @return Personage
+     */
+    Personage updatePersonage(Personage personage);
+
+    /**
+     * Delete Personage from database by id
+     *
+     * @param personId - unique id for personage (PK)
+     * @return
+     */
+    void deletePersonageById(long personId);
 }

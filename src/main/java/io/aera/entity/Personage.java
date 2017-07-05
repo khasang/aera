@@ -15,8 +15,6 @@ public class Personage {
     private String name;
     @Column(name = "pers_level")
     private int level;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<TypePersonage> typePersonage = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -42,11 +40,4 @@ public class Personage {
         this.level = level;
     }
 
-    public List<TypePersonage> getTypePersonage() {
-        return typePersonage;
-    }
-
-    public void setTypePersonage(List<TypePersonage> typePersonage) {
-        this.typePersonage = typePersonage;
-    }
 }

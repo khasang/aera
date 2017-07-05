@@ -19,6 +19,16 @@ public class TypePersonageServiceImpl implements TypePersonageService {
     }
 
     @Override
+    public TypePersonage updateTypePersonage(TypePersonage typePersonage) {
+        return typePersonageDao.update(typePersonage);
+    }
+
+    @Override
+    public void deleteTypePersonById(long typeId) {
+        typePersonageDao.deleteById(typeId);
+    }
+
+    @Override
     public List<TypePersonage> getTypePersonageList() {
         return typePersonageDao.getList();
     }

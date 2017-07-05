@@ -46,4 +46,16 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     public T getById(long id) {
         return getCurrentSession().get(entityClass, id);
     }
+
+    @Override
+    public T update(T entity) {
+        getCurrentSession().update(entity);
+        return entity;
+    }
+
+    @Override
+    public void deleteById(long id) {
+        T entityDelete = getById(id);
+        getCurrentSession().delete(entityDelete);
+    }
 }

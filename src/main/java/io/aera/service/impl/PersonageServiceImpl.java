@@ -19,12 +19,22 @@ public class PersonageServiceImpl implements PersonageService {
     }
 
     @Override
-    public List<Personage> getPersonageList() {
-        return personageDao.getList();
+    public Personage updatePersonage(Personage personage) {
+        return personageDao.update(personage);
+    }
+
+    @Override
+    public void deletePersonageById(long personId) {
+        personageDao.deleteById(personId);
     }
 
     @Override
     public Personage getPersonageById(long personId) {
         return personageDao.getById(personId);
+    }
+
+    @Override
+    public List<Personage> getPersonageList() {
+        return personageDao.getList();
     }
 }

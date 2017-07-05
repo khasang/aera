@@ -29,4 +29,20 @@ public interface StoryService {
      * @return list of stories
      */
     List<Story> getStoryList();
+
+    /**
+     * Update Story at database
+     *
+     * @param story - story for update
+     * @return story
+     */
+    Story updateStory(Story story);
+
+    /**
+     * Delete Story from database by id
+     *
+     * @param storyId - unique id for story (PK)
+     * @return
+     */
+    void deleteStoryById(long storyId);
 }

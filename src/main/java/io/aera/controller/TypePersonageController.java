@@ -32,4 +32,15 @@ public class TypePersonageController {
         return typePersonageService.getTypePersonageById(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public TypePersonage updateTypePersonage(@RequestBody TypePersonage typePersonage) {
+        return typePersonageService.updateTypePersonage(typePersonage);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deletePersonage(@PathVariable(value = "id") String id) {
+        typePersonageService.deleteTypePersonById(Long.parseLong(id));
+    }
 }
