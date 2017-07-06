@@ -63,6 +63,15 @@
         return true;
     }
 
+    function clearForm() {
+        $("#login").val("");
+        $("#firstname").val("");
+        $("#lastname").val("");
+        $("#password").val("");
+        $("#password-repeat").val("");
+        $("#email").val("");
+    }
+
     // Send ajax create user request
     function create() {
         if (validateForm()) {
@@ -82,10 +91,15 @@
                 data: JSON.stringify(user),
                 async: false,
                 success: function (result) {
-                    //
+                    $(".alert").addClass("alert-success");
+                    $(".alert").html("User successfuly registered!");
+                    clearForm();
+                    window.scrollTo(0, 0);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    //
+                    $(".alert").addClass("alert-danger");
+                    $(".alert").html("User register failed!");
+                    window.scrollTo(0, 0);
                 }
             });
         }
@@ -116,6 +130,7 @@
 <body>
     <div class="wrap">
         <div class="container">
+            <div class="alert"></div>
             <div class="form-group required">
                 <label for="login" class="control-label">Login</label>
                 <input id="login" class="form-control" placeholder="Please enter you login">

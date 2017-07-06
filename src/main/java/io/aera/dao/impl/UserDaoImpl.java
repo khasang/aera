@@ -1,6 +1,7 @@
 package io.aera.dao.impl;
 
 import io.aera.dao.UserDao;
+import io.aera.entity.Roles;
 import io.aera.entity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

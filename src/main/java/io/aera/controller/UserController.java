@@ -3,10 +3,13 @@ package io.aera.controller;
 import io.aera.entity.Story;
 import io.aera.entity.User;
 import io.aera.service.UserService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.persistence.PersistenceException;
 
 /**
  * Handle requests for user functionality
@@ -35,8 +38,13 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User registerUser(@RequestBody User user) {
-        userService.register(user);
-        return user;
+    public User registerUser(@RequestBody User user) throws Exception {
+        try {
+            userService.register(user);
+            return user;
+        }
+        catch (Exception e) {
+            throw new Exception("User already exists");
+        }
     }
 }

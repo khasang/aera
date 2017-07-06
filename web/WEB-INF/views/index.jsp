@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Aera project</title>
 </head>
 <body>
-${attr}
+<a href="/user/register">Register new user</a>
 </body>
 </html>
