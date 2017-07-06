@@ -19,6 +19,7 @@
         <jackson.version>2.7.8</jackson.version>
         <junit.version>4.12</junit.version>
         <junit.param.version>1.0.4</junit.param.version>
+        <hsqldb.version>1.8.0.10</hsqldb.version>
     </properties>
 
     <dependencies>
@@ -90,6 +91,14 @@
             <version>${hibernate.version}</version>
         </dependency>
 
+        <!-- HSQLDB -->
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Javax -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -131,6 +140,11 @@
             <artifactId>JUnitParams</artifactId>
             <version>${junit.param.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.11</version>
         </dependency>
     </dependencies>
 
