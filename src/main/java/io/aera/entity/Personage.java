@@ -1,8 +1,6 @@
 package io.aera.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "personage")
@@ -39,5 +37,4 @@ public class Personage {
     public void setLevel(int level) {
         this.level = level;
     }
-
 }
