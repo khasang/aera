@@ -1,14 +1,17 @@
+/*
 package io.aera.service.impl;
 
 import io.aera.dao.StoryDao;
 import io.aera.entity.Story;
 import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("storyService")
+@Service
+@Qualifier("userService")
 public class StoryServiceImpl implements StoryService {
     @Autowired
     private StoryDao storyDao;
@@ -28,3 +31,4 @@ public class StoryServiceImpl implements StoryService {
         return storyDao.getById(storyId);
     }
 }
+*/

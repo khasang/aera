@@ -4,9 +4,11 @@ import io.aera.dao.UserDao;
 import io.aera.entity.User;
 import io.aera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service("userService")
+@Service
+@Qualifier("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
@@ -14,5 +16,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(User user) {
         return userDao.create(user);
+    }
+
+    @Override
+    public User getById(long id) {
+        return userDao.getById(id);
     }
 }

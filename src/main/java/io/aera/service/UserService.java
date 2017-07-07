@@ -13,4 +13,10 @@ public interface UserService {
      */
     User register(User user);
 
+    /**
+     * Returns user by id
+     * @param id
+     * @return id
+     */
+    User getById(long id);
 }

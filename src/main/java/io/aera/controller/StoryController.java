@@ -1,3 +1,4 @@
+/*
 package io.aera.controller;
 
 import io.aera.entity.Story;
@@ -33,3 +34,4 @@ public class StoryController {
     }
 
 }
+*/
