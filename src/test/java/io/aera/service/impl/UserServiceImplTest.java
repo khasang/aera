@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,7 +15,6 @@ import static org.junit.Assert.assertNotNull;
 public class UserServiceImplTest {
     @Autowired
     private UserService userService;
-    //public User user = getUser();
 
     @Test
     public void registerUser() {
