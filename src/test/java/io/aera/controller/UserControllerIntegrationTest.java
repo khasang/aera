@@ -3,6 +3,7 @@ package io.aera.controller;
 import io.aera.entity.User;
 import org.junit.Test;
 import org.springframework.http.*;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.web.client.RestTemplate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,6 +13,7 @@ public class UserControllerIntegrationTest {
     private final String REGISTER = "/register";
 
     @Test
+    @Rollback
     public void createUser(){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

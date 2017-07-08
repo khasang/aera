@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .and().csrf().disable().formLogin().defaultSuccessUrl("/", false);
+                .and().csrf().disable()
+                .formLogin().loginPage("/user/login").usernameParameter("login").passwordParameter("password")
+                .defaultSuccessUrl("/user/status");
     }
-
-
 }

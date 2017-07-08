@@ -4,6 +4,7 @@
     <title>Status</title>
 </head>
 <body>
-Username: ${user.getUsername()}
+<h1>Welcome!</h1>
+<%--<p>Username:${}</p>--%>
 </body>
 </html>
