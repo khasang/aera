@@ -81,7 +81,7 @@
     };
 
     function clear() {
-        document.getElementById('response').innerHTML = '';
+        document.getElementById('response').innerHTML = '1';
     }
 </script>
 <body>
