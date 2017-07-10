@@ -27,4 +27,12 @@ public interface UserService {
      * @return user
      */
     User findByLogin(String login);
+
+    /**
+     * Updates current user
+     *
+     * @param user
+     * @return updated user
+     */
+    User update(User user);
 }

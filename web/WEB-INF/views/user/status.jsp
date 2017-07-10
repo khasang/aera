@@ -7,10 +7,10 @@
 <body>
 
 <h1>Welcome!</h1>
-<p>UserName: <strong>{user.firstname}</strong></p>
-<p>UserLastName: <strong>{user.lastname}</strong></p>
-<p>UserEmail: <strong>{user.email}</strong></p>
-
-<%--<p><a href="<c:url value="/user/register" />">Update</a></p>--%>
+<p>UserName: <strong>${user.firstname}</strong></p>
+<p>UserLastName: <strong>${user.lastname}</strong></p>
+<p>UserEmail: <strong>${user.email}</strong></p>
+<br>
+<p><a href="<c:url value="/user/update" />">Update</a></p>
 </body>
 </html>

@@ -3,8 +3,12 @@ package io.aera.controller;
 import io.aera.entity.User;
 import io.aera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -73,5 +77,31 @@ public class UserController {
         modelAndView.setViewName("user/status");
         modelAndView.addObject("user", user);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public ModelAndView showUpdatePage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/user/update");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    public User updateUserForm(@RequestBody User user ,HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        User currentUser = userService.findByLogin(principal.getName());
+        updateUser(currentUser, user);
+        return userService.update(currentUser);
+    }
+
+    private User updateUser(User oldUser, User newUser) {
+        oldUser.setId(oldUser.getId());
+        oldUser.setLogin(newUser.getLogin());
+        oldUser.setFirstname(newUser.getFirstname());
+        oldUser.setLastname(newUser.getLastname());
+        oldUser.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
+        oldUser.setEmail(newUser.getEmail());
+        oldUser.setRoleId(oldUser.getRoleId());
+        return oldUser;
     }
 }

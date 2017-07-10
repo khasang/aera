@@ -43,4 +43,12 @@ public interface BasicDao<T> {
      * @return entity
      */
     T findUserByLogin(String login);
+
+    /**
+     * Updates entity in the database
+     *
+     * @param entity
+     * @return updated entity
+     */
+    T update(T entity);
 }
