@@ -1,6 +1,7 @@
 package io.aera.dao;
 
 import io.aera.entity.Story;
+import io.aera.entity.User;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -34,4 +35,12 @@ public interface BasicDao<T> {
      * @return list from entity
      * */
     List<T> getList();
+
+    /***
+     * Finds entity by its login
+     *
+     * @param login
+     * @return entity
+     */
+    T findUserByLogin(String login);
 }

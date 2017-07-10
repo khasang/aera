@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
     public User getById(long id) {
         return userDao.getById(id);
     }
+
+    @Override
+    public User findByLogin(String login) {
+        return userDao.findUserByLogin(login);
+    }
 }

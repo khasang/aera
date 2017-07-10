@@ -19,4 +19,12 @@ public interface UserService {
      * @return id
      */
     User getById(long id);
+
+    /**
+     * Finds user by its login
+     *
+     * @param login
+     * @return user
+     */
+    User findByLogin(String login);
 }

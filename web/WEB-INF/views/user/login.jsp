@@ -7,36 +7,6 @@
     <link rel="stylesheet" href="/css/user_register.css" />
 </head>
 
-<script type="text/javascript">
-    /*var serviceUrl = "/user/login";
-
-    var Login = function () {
-        var JSONObject = {
-            "login": $('#login').val(),
-            "password": $('#password').val()
-        };
-        $.ajax({
-            type: 'PUT',
-            url: serviceUrl,
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(JSONObject),
-            dataType: 'json',
-            async: false,
-            success: function (result) {
-                $(".alert").addClass("alert-success");
-                $(".alert").html("User successfuly logged!");
-                window.scrollTo(0, 0);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $(".alert").addClass("alert-danger");
-                $(".alert").html("Login failed!");
-                window.scrollTo(0, 0);
-            }
-        });
-    };*/
-
-</script>
-
 <body>
 
 <div class="wrap">

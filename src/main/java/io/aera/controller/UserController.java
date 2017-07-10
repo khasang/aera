@@ -4,11 +4,10 @@ import io.aera.entity.User;
 import io.aera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 /**
  * Handles basic users' requests
@@ -52,7 +51,7 @@ public class UserController {
     /**
      * Allows to login into application. Redirects to 'user/status.jsp'
      *
-     * @return modelView
+     * @return modelAndView
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView showLoginForm(){
@@ -64,12 +63,15 @@ public class UserController {
     /**
      * Shows basic profile page
      *
-     * @return
+     * @return modelAndView
      */
     @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public ModelAndView showProfileForm(){
+    public ModelAndView showProfileForm(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        User user = userService.findByLogin(principal.getName());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/status");
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 }
