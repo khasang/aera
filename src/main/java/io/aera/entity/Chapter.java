@@ -23,9 +23,9 @@ public class Chapter {
     @Column(name = "file_data")
     private byte[] file_data;*/
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "story_id", foreignKey = @ForeignKey(name = "STORY_ID_FK"))
-    private Story story;
+    private Story story;*/
 
 
     public BigDecimal getGoldPrices() {
@@ -52,13 +52,13 @@ public class Chapter {
         this.name = name;
     }
 
-    public Story getStory() {
+    /*public Story getStory() {
         return story;
     }
 
     public void setStory(Story story) {
         this.story = story;
-    }
+    }*/
 
     /*public byte[] getFile_data() {
         return file_data;
