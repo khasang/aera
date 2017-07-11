@@ -40,7 +40,7 @@ public class AppController {
         jdbcTemplate.execute("INSERT INTO roles(id, role) VALUES (1, 'ROLE_ADMIN')");
         jdbcTemplate.execute("INSERT INTO roles(id, role) VALUES (2, 'ROLE_USER')");
         jdbcTemplate.execute("INSERT INTO players(id, login, firstname, lastname, password, email, role_id) " +
-                "VALUES (0, 'admin', 'admin', 'admin', '$2a$10$WeCDQ9CVFPjvhGUWrqXVPuyz75Yk0thSfJxdqFxj/GLCoiz7iIM2a', 'admin@aera.com', 1)");
+                "VALUES (0, 'admin', 'admin', 'admin', '" + new BCryptPasswordEncoder().encode("admin") + "', 'admin@aera.com', 1)");
         return true;
     }
 
