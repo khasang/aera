@@ -85,7 +85,7 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User updateUserForm(@RequestBody User user ,HttpServletRequest request){
+    public User updateUserForm(@RequestBody User user, HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         User currentUser = userService.findByLogin(principal.getName());
         updateUser(currentUser, user);

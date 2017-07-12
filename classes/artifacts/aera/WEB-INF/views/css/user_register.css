@@ -1,0 +1,24 @@
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.required label:after {
+    content: '*';
+    color: red;
+}
+
+.form-group > .help-block {
+    color: red;
+    display: none;
+}
+
+.form-group.has-error > .help-block {
+    display: block;
+}
