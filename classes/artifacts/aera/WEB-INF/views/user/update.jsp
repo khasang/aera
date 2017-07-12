@@ -11,30 +11,118 @@
 <script type="text/javascript">
     var serviceUrl = "/user/update";
 
-    function update() {
-        var user = {
-            login: $("#login").val(),
-            firstname: $("#firstname").val(),
-            lastname: $("#lastname").val(),
-            password: $("#password").val(),
-            email: $("#email").val()
-        };
+    function validatePasswordsEqual() {
+        var password = $("#password").val();
+        var password_repeat = $("#password-repeat").val();
 
-        $.ajax({
-            url: serviceUrl,
-            type: "PUT",
-            contentType: 'application/json;charset=utf-8',
-            dataType: "json",
-            data: JSON.stringify(user),
-            async: false,
-            success: function (result) {
-                window.scrollTo(0, 0);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                window.scrollTo(0, 0);
-            }
-        });
+        if (password != password_repeat) {
+            $("#password").parent().addClass("has-error");
+            $("#password").parent().children(".help-block").html("Passwords are not equals");
+            $("#password-repeat").parent().addClass("has-error");
+            $("#password-repeat").parent().children(".help-block").html("Passwords are not equals");
+            return false;
+        }
+        else {
+            $("#password").parent().removeClass("has-error");
+            $("#password-repeat").parent().removeClass("has-error");
+            return true;
+        }
     }
+
+    function validateRequiredField(field) {
+        if (field.val() == "") {
+            field.parent().addClass("has-error");
+            field.parent().children(".help-block").html("Attribute can not be blank");
+            return false;
+        }
+        else {
+            field.parent().removeClass("has-error");
+            return true;
+        }
+    }
+
+    function validateRequiredFields() {
+        if (!validateRequiredField($("#login")))
+            return false;
+        if (!validateRequiredField($("#firstname")))
+            return false;
+        if (!validateRequiredField($("#password")))
+            return false;
+        if (!validateRequiredField($("#password-repeat")))
+            return false;
+        if (!validateRequiredField($("#email")))
+            return false;
+        return true;
+    }
+
+    function validateForm() {
+        if (!validateRequiredFields())
+            return false;
+        if (!validatePasswordsEqual())
+            return false;
+        return true;
+    }
+
+    function clearForm() {
+        $("#login").val("");
+        $("#firstname").val("");
+        $("#lastname").val("");
+        $("#password").val("");
+        $("#password-repeat").val("");
+        $("#email").val("");
+    }
+
+    function update() {
+        if (validateForm()) {
+            var user = {
+                login: $("#login").val(),
+                firstname: $("#firstname").val(),
+                lastname: $("#lastname").val(),
+                password: $("#password").val(),
+                email: $("#email").val()
+            };
+
+            $.ajax({
+                url: serviceUrl,
+                type: "PUT",
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                data: JSON.stringify(user),
+                async: false,
+                success: function (result) {
+                    $(".alert").addClass("alert-success");
+                    $(".alert").html("User's profile has been successfuly updated!");
+                    clearForm();
+                    window.scrollTo(0, 0);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $(".alert").addClass("alert-danger");
+                    $(".alert").html("An attempt to update user's profile failed!");
+                    window.scrollTo(0, 0);
+                }
+            });
+        }
+    }
+
+    jQuery(document).ready(function () {
+        $("#login").on("blur", function () {
+            validateRequiredField($(this));
+        });
+        $("#firstname").on("blur", function () {
+            validateRequiredField($(this));
+        });
+        $("#password").on("blur", function () {
+            if (validateRequiredField($(this)))
+                validatePasswordsEqual();
+        });
+        $("#password-repeat").on("blur", function () {
+            if (validateRequiredField($(this)))
+                validatePasswordsEqual();
+        });
+        $("#email").on("blur", function () {
+            validateRequiredField($(this));
+        });
+    })
 
 </script>
 
