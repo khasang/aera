@@ -5,6 +5,7 @@ import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,6 +27,15 @@ public class StoryController {
     public Story getStoryById(@PathVariable(value = "id") String id ){
         return storyService.getStoryById(Long.parseLong(id));
     }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getStory(@PathVariable(value = "id") String id){
+        Story story = storyService.getStoryById(Long.parseLong(id));
+        return new ModelAndView("story-page", "story", story);
+    }
+
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody

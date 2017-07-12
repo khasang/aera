@@ -1,3 +1,4 @@
+<%@ taglib prefix="h" uri="http://www.springframework.org/tags/form" %>
 <%--
   Just shows the Game menu
 --%>
@@ -30,9 +31,10 @@
         }
 
         .sidebar {
-            widht: 600px;
+            alignment: center;
+            widht: 200px;
             height: 300px;
-            border: 1px dotted;
+            border: 1px;
             float: left;
         }
 
@@ -51,9 +53,9 @@
     </style>
 </head>
 <!-- Makes request-string for storyController and returns  -->
-<!-- get all stories  -->
 <script type="text/javascript">
     var service = "/story";
+    //get all stories
     var GetAllStories = function () {
         $.ajax({
             type: 'GET',
@@ -61,14 +63,26 @@
             dataType: 'json',
             async: false,
             success: function (result) {
+                clear();
                 result.forEach(function (item) {
-                    document.getElementById('response').innerHTML += item.name + " -- " + item.description + "<br>";
+                    buildResult(item);
+                    document.getElementById('response').innerHTML += buildResult(item);
                 });
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                $('#response').html(JSON.stringify(jgXHR))
+                $('#response').html(JSON.stringify(igXHR))
             }
         });
+        //cleans body 'response' before filling
+        function clear() {
+            document.getElementById('response').innerHTML = ' ';
+        }
+
+        //builds 'buildString' var and places it to 'response' div
+        function buildResult(item) {
+            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>test</a><br>"
+            return buildString;
+        }
     };
 
     // gets story by id
@@ -79,18 +93,20 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-                $('#content').html(JSON.stringify(result));
+                //$('#content').html(JSON.stringify(result));
+                //var t =  result.description;
+                document.getElementById('content').innerHTML="<h2>" + result.description +"</h2>";
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#content').html(JSON.stringify(jqXHR))
             }
         });
     };
-
-    //add new story - put name
-    var PutStoryName = function (client_name) {
+    //put story name and description
+    var PutStoryName = function (client_name,descr_name) {
         var JSONObject = {
-            'name': client_name
+            'name': client_name,
+            'description': descr_name
         };
         $.ajax({
             type: 'PUT',
@@ -107,22 +123,40 @@
             }
         });
     };
-
 </script>
-<body>
 
+<body>
 <div class="header"><h1>AERA</h1></div>
-<div class="navigation">
-    <a style="color: white" href="javascript:void(0);"  onclick="GetAllStories();return false;">STORIES</a>
-    Get Story by id <input type="text" id="story_id" value=""/>
-    <button type="button" onclick="GetStoryById($('#story_id').val())">Try</button>
-    Put Story name: <input type="text" id="putStoryName" value=""/>
-    <button type="button" onclick="PutStoryName($('#putStoryName').val())">Try</button>
+<div class="navigation"><A style="color: white" HREF="javascript:void(0);"
+                           OnClick="Javascript:GetAllStories();return false;">STORIES</a>
+    Get Story by id <input type="text" id="putName" value=""/>
+    <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
+    Put Story name: <input type="text" id="ptName" value=""/>
+    Description: <input type="text" id="ptDescr" value=""/>
+    <button type="button" onclick="PutStoryName($('#ptName').val(),$('#ptDescr').val())">
+        Try</button>
 </div>
-<div class="sidebar" widt="200" id="response">
+<div class="sidebar" id="response">
 </div>
 <div class="content" id="content"></div>
 <div class="footer"></div>
-
+<table>
+    <tr>
+        <td>Add document</td>
+        <td><code><strong>POST</strong>/docment/add</code></td>
+        <td>
+            <h:form class="form-inline">
+                name: <input type="text" id="postName"  value="documentname"></input>
+                <br>
+                code: <input type="text" id="postCode" value="code"></input>
+                <br>
+                date: <input type="text" id="postDate" value="date"></input>
+                <br>
+                documentItem: <input type="text" id="postDocumentItem" value="documentItem"></input>
+                <button type="button" onclick="RestPost()">Try</button>
+            </h:form>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

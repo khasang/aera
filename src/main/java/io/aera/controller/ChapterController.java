@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,6 +18,21 @@ import java.util.List;
 public class ChapterController {
     @Autowired
     private ChapterService chapterService;
+
+    /*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getStory(@PathVariable(value = "id") String id){
+        Story story = storyService.getStoryById(Long.parseLong(id));
+        return new ModelAndView("story-page", "story", story);
+    }*/
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getChapter(@PathVariable(value = "id") String id){
+        Chapter chapter = chapterService.getChapterById(Long.parseLong(id));
+        return new ModelAndView("chapter-page", "chapter", chapter);
+    }
+
 
     @RequestMapping(value = "/add/{storyID}",
             method = RequestMethod.PUT,
@@ -51,4 +67,6 @@ public class ChapterController {
     public void deleteChapter(@PathVariable(value = "id") String id){
         chapterService.deleteChapter(Long.parseLong(id));
     }
+
+
 }
