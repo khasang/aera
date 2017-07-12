@@ -6,9 +6,7 @@ import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service("storyService")
@@ -18,7 +16,6 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public Story createStory(Story story) {
-        story.setDate(new Date());
         return storyDao.create(story);
     }
 
@@ -39,7 +36,7 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public Story updateStory(Story story) {
-        story.setDate(new Date());
+        story.setDateModified(LocalDateTime.now());
         return storyDao.updateEntity(story);
     }
 }

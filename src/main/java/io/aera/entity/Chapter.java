@@ -1,15 +1,8 @@
 package io.aera.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "chapters")
@@ -26,7 +19,7 @@ public class Chapter {
     private BigDecimal goldPrice;
 
     @Column(name="date_modified", nullable = false)
-    private Date date;
+    private LocalDateTime dateModified = LocalDateTime.now();
 
     public long getId() {
         return id;
@@ -52,11 +45,11 @@ public class Chapter {
         this.goldPrice = goldPrice;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateModified() {
+        return dateModified;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateModified(LocalDateTime date) {
+        this.dateModified = date;
     }
 }

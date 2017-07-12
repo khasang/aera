@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service("chapterService")
@@ -26,7 +24,6 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public Chapter createChapter(Chapter chapter) {
-        chapter.setDate(new Date());
         return chapterDao.create(chapter);
     }
 
@@ -37,7 +34,6 @@ public class ChapterServiceImpl implements ChapterService {
             throw new EntityNotFoundRuntimeException(
                     Story.class.getName(), Long.toString(storyID));
         }
-        chapter.setDate(new Date());
         return chapterDao.create(chapter);
     }
 
@@ -58,7 +54,7 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public Chapter updateChapter(Chapter chapter) {
-        chapter.setDate(new Date());
+        chapter.setDateModified(LocalDateTime.now());
         return chapterDao.updateEntity(chapter);
     }
 }

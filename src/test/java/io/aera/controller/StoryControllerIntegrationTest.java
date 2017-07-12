@@ -16,11 +16,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -78,10 +78,10 @@ public class StoryControllerIntegrationTest {
 
         assertNotNull(updatedStory);
         assertEquals(story.getId(), updatedStory.getId());
-        assertNotEquals(story.getDate(), updatedStory.getDate());
+        assertNotEquals(story.getDateModified(), updatedStory.getDateModified());
 
         assertNotNull(getUpdatedStory);
-        assertEquals(updatedStory.getDate(), getUpdatedStory.getDate());
+        assertEquals(updatedStory.getDateModified(), getUpdatedStory.getDateModified());
         assertEquals(updatedStory.getDescription(), getUpdatedStory.getDescription());
     }
 
@@ -121,7 +121,7 @@ public class StoryControllerIntegrationTest {
 
     private Story updateStory(Story story){
         story.setDescription("updated description");
-        story.setDate(new Date());
+        story.setDateModified(LocalDateTime.now());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -179,7 +179,6 @@ public class StoryControllerIntegrationTest {
         Story story = new Story();
         story.setName(RandomStringUtils.randomAlphabetic(15).toUpperCase());
         story.setDescription(createRandomDescription());
-        story.setDate(new Date());
 
         Chapter chapter1 = new Chapter();
         chapter1.setName(RandomStringUtils.randomAlphabetic(15).toUpperCase());
