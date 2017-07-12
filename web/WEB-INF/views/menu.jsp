@@ -6,19 +6,20 @@
 <head>
     <title>Menu</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
     <style>
 
-        .header{
-            widht:600px;
+        .header {
+            widht: 200px;
             height: 60px;
             line-height: 30px;
             text-align: center;
             color: #ff9900;
             border: 1px dotted black;
         }
-        .navigation{
-            widht:600px;
+
+        .navigation {
+            widht: 200px;
             height: 40px;
             line-height: 30px;
             text-align: left;
@@ -27,95 +28,115 @@
             background-color: #4b4b4b;
             border: black 1px dotted;
         }
-        .sidebar{
-            widht:200px;
+
+        .sidebar {
+            alignment: center;
+            widht: 200px;
             height: 300px;
-            border: 1px dotted ;
+            border: 1px;
             float: left;
         }
-        .content{
-            widht:370px;
+
+        .content {
+            widht: 200px;
             height: 300px;
             border: 1px dotted black;
-            margin-left: 230px;
+            margin-left: 200px;
         }
-        .sidebarHeader{
-            widht:199px;
-            height: 50px;
-            border: 1px dotted black;
-        }
-        .footer{
-            widht:600px;
+
+        .footer {
+            widht: 200px;
             height: 130px;
             border: 1px dotted black;
         }
     </style>
 </head>
-<!-- Forms request-string for storyController and returns  -->
+<!-- Makes request-string for storyController and returns  -->
 <script type="text/javascript">
     var service = "/story";
+    //get all stories
     var GetAllStories = function () {
         $.ajax({
             type: 'GET',
             url: service + "/all",
             dataType: 'json',
             async: false,
-            success: function(result){
-                result.forEach(function (item) {
-                console.log(item.name);
+            success: function (result) {
                 clear();
-                document.getElementById('response').innerHTML += item.name + "<br>";
+                result.forEach(function (item) {
+                    buildResult(item);
+                    document.getElementById('response').innerHTML += buildResult(item);
                 });
-                //$('#response').html(JSON.stringify(result));
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 $('#response').html(JSON.stringify(igXHR))
             }
         });
-    };
-    //test empty request
-    var EmptyRequest = function () {
-        alert("!!!")
-        $.ajax();
-        alert("end")
+        //cleans body 'response' before filling
+        function clear() {
+            document.getElementById('response').innerHTML = ' ';
+        }
+
+        //builds 'buildString' var and places it to 'response' div
+        function buildResult(item) {
+            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>test</a><br>"
+            return buildString;
+        }
     };
 
-    function clear() {
-        document.getElementById('response').innerHTML = '1';
-    }
+    // gets story by id
+    var GetStoryById = function (id) {
+        $.ajax({
+            type: 'GET',
+            url: service + "/get/story/" + id,
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                //$('#content').html(JSON.stringify(result));
+                //var t =  result.description;
+                document.getElementById('content').innerHTML="<h2>" + result.description +"</h2>";
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#content').html(JSON.stringify(jqXHR))
+            }
+        });
+    };
+    //put story name
+    var PutStoryName = function (client_name) {
+        var JSONObject = {
+            'name': client_name
+        };
+        $.ajax({
+            type: 'PUT',
+            url: service + "/add",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(JSONObject),
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                $('#content').html(JSON.stringify(result));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+        });
+    };
 </script>
+
 <body>
+<div class="header"><h1>AERA</h1></div>
+<div class="navigation"><A style="color: white" HREF="javascript:void(0);"
+                           OnClick="Javascript:GetAllStories();return false;">STORIES</a>
+    Get Story by id <input type="text" id="putName" value=""/>
+    <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
+    Put Story name: <input type="text" id="ptName" value=""/>
+    Description: <input type="text" id="ptDescr" value=""/>
+    <button type="button" onclick="PutStoryName($('#ptName').val())">Try</button>
+</div>
+<div class="sidebar" id="response">
 
- <div class="header"><h1>AERA</h1></div>
- <div class="navigation" ><A style="color: white" HREF="javascript:void(0);" OnClick="Javascript:GetAllStories();return false;">QUESTS</a>
-     <A style="color: white" HREF="javascript:void(0);" OnClick="Javascript:EmptyRequest();return false;">EmptyRequest</a>
- |Menu1 |Menu1 |Menu1
- </div>
- <div class="sidebar" widt="200" id="response">
-     <%--<div class="sidebarHeader">
-
-     </div>--%>
- </div>
- <div class="content" ></div>
- <div class="footer" ></div>
- <br>
-<table>
-    <thead/>
-    <tr>
-        <th>ID</th>
-        <th>NAME</th>
-    </tr>
-    <thead/>
-    <tr>
-        <td>GET Story by ID</td>
-        <td><code><strong>GET</strong>/get/story/{id}</code></td>
-        <td>
-            <button type="button" onclick="GetAllStories()">Try</button>
-        </td>
-    </tr>
-</table>
- <div class =  ></div>
-    <div id="response"></div>
-
+</div>
+<div class="content" id="content"></div>
+<div class="footer"></div>
 </body>
 </html>
