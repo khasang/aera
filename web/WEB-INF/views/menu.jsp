@@ -80,7 +80,7 @@
 
         //builds 'buildString' var and places it to 'response' div
         function buildResult(item) {
-            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>test</a><br>"
+            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>$('item.name').val();</a><br>"
             return buildString;
         }
     };
@@ -102,11 +102,11 @@
             }
         });
     };
-    //put story name
+    //put story name and description
     var PutStoryName = function (client_name,descr_name) {
         var JSONObject = {
             'name': client_name,
-            'descr_name': descr_name
+            'description': descr_name
         };
         $.ajax({
             type: 'PUT',
