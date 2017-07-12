@@ -5,10 +5,7 @@ import io.aera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -87,6 +84,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
     public User updateUserForm(@RequestBody User user ,HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         User currentUser = userService.findByLogin(principal.getName());
@@ -103,5 +101,15 @@ public class UserController {
         oldUser.setEmail(newUser.getEmail());
         oldUser.setRoleId(oldUser.getRoleId());
         return oldUser;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserById(@PathVariable(value = "id") String id){
+        User user = userService.getById(Long.parseLong(id));
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/user/status");
+        modelAndView.addObject("user", user);
+        return user;
     }
 }
