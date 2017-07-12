@@ -75,7 +75,7 @@
     var GetStoryById = function (id) {
         $.ajax({
             type: 'GET',
-            url: service + "/get/story/" + id,
+            url: service + "/getById/" + id,
             dataType: 'json',
             async: false,
             success: function (result) {

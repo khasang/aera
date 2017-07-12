@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import java.util.List;
 
 /**
- * Basics dao operations for DAO child
+ * Basic dao operations for DAO children
  */
 public interface BasicDao<T> {
     /**
@@ -16,22 +16,33 @@ public interface BasicDao<T> {
 
     /**
      * Create entity at database
-     *
      * @param entity - current entity for creation
      * @return created entity
      */
     T create(T entity);
 
     /**
-     * Find entity at database
-     *
-     * @param id - current id of entity
-     * @return entity
+     * Get entity from database by ID
+     * @param id - current ID of entity
+     * @return found entity
      */
     T getById(long id);
 
     /**
-     * @return list from entity
-     * */
-    List<T> getList();
+     * Delete entity from database by ID
+     * @param id - current ID of entity
+     */
+    void deleteById(long id);
+
+    /**
+     * @return List of entities
+     */
+    List<T> getAllEnities();
+
+    /**
+     * Update existing entity
+     * @param entity
+     * @return updated entity
+     */
+    T updateEntity(T entity);
 }

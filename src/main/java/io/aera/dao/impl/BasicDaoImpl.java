@@ -34,16 +34,29 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public List<T> getList() {
-        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
-        Root<T> root = criteriaQuery.from(entityClass);
-        criteriaQuery.select(root);
-        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
+    public T getById(long id) {
+        return getCurrentSession().get(entityClass, id);
     }
 
     @Override
-    public T getById(long id) {
-        return getCurrentSession().get(entityClass, id);
+    public void deleteById(long id) {
+        Object deletedEntity = getById(id);
+        if(deletedEntity!=null){
+            getCurrentSession().delete(deletedEntity);
+        }
+    }
+
+    @Override
+    public T updateEntity(T entity) {
+        getCurrentSession().update(entity);
+        return entity;
+    }
+
+    @Override
+    public List<T> getAllEnities() {
+        CriteriaBuilder criteria = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteria.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
 }
