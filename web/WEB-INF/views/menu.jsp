@@ -53,6 +53,10 @@
     </style>
 </head>
 <!-- Makes request-string for storyController and returns  -->
+<<<<<<< HEAD
+=======
+<!-- get all stories  -->
+>>>>>>> EugeniOleg
 <script type="text/javascript">
     var service = "/story";
     //get all stories
@@ -63,14 +67,19 @@
             dataType: 'json',
             async: false,
             success: function (result) {
+<<<<<<< HEAD
                 clear();
                 result.forEach(function (item) {
                     buildResult(item);
                     document.getElementById('response').innerHTML += buildResult(item);
+=======
+                result.forEach(function (item) {
+                    document.getElementById('response').innerHTML += item.name + " -- " + item.description + "<br>";
+>>>>>>> EugeniOleg
                 });
             },
             error: function (jgXHR, textStatus, errorThrown) {
-                $('#response').html(JSON.stringify(igXHR))
+                $('#response').html(JSON.stringify(jgXHR))
             }
         });
         //cleans body 'response' before filling
@@ -102,8 +111,14 @@
             }
         });
     };
+<<<<<<< HEAD
     //put story name and description
     var PutStoryName = function (client_name,descr_name) {
+=======
+
+    //add new story - put name
+    var PutStoryName = function (client_name) {
+>>>>>>> EugeniOleg
         var JSONObject = {
             'name': client_name,
             'description': descr_name
@@ -124,6 +139,7 @@
         });
     };
 </script>
+<<<<<<< HEAD
 
 <body>
 <div class="header"><h1>AERA</h1></div>
@@ -158,5 +174,37 @@
     </td>
     </tr>
 </table>
+=======
+<body>
+
+<<<<<<< HEAD
+ <div class="header"><h1>AERA</h1></div>
+ <div class="navigation" ><A style="color: white" HREF="javascript:void(0);" OnClick="Javascript:GetAllStories();return false;">STORIES</a>
+     Get Story by id <input type="text" id="putName" value=""/>
+     <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
+     Put Story name: <input type="text" id="ptName" value=""/>
+     <button type="button" onclick="PutStoryName($('#ptName').val())">Try</button>
+ </div>
+ <div class="sidebar" widt="200" id="response">
+
+ </div>
+ <div class="content" id="content" ></div>
+ <div class="footer" ></div>
+
+<div class="header"><h1>AERA</h1></div>
+<div class="navigation">
+    <a style="color: white" href="javascript:void(0);"  onclick="GetAllStories();return false;">STORIES</a>
+    Get Story by id <input type="text" id="story_id" value=""/>
+    <button type="button" onclick="GetStoryById($('#story_id').val())">Try</button>
+    Put Story name: <input type="text" id="putStoryName" value=""/>
+    <button type="button" onclick="PutStoryName($('#putStoryName').val())">Try</button>
+</div>
+<div class="sidebar" widt="200" id="response">
+</div>
+<div class="content" id="content"></div>
+<div class="footer"></div>
+>>>>>>> origin/EugeniOleg
+
+>>>>>>> EugeniOleg
 </body>
 </html>
