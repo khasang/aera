@@ -1,3 +1,4 @@
+<%@ taglib prefix="h" uri="http://www.springframework.org/tags/form" %>
 <%--
   Just shows the Game menu
 --%>
@@ -131,12 +132,30 @@
     <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
     Put Story name: <input type="text" id="ptName" value=""/>
     Description: <input type="text" id="ptDescr" value=""/>
-    <button type="button" onclick="PutStoryName($('#ptName').val())">Try</button>
+    <button type="button" onclick="PutStoryName($('#ptName').val())">
+        Try</button>
 </div>
 <div class="sidebar" id="response">
-
 </div>
 <div class="content" id="content"></div>
 <div class="footer"></div>
+<table>
+    <tr>
+    <td>Add document</td>
+    <td><code><strong>POST</strong>/docment/add</code></td>
+    <td>
+        <h:form class="form-inline">
+        name: <input type="text" id="postName"  value="documentname"></input>
+        <br>
+        code: <input type="text" id="postCode" value="code"></input>
+        <br>
+        date: <input type="text" id="postDate" value="date"></input>
+        <br>
+        documentItem: <input type="text" id="postDocumentItem" value="documentItem"></input>
+        <button type="button" onclick="RestPost()">Try</button>
+        </h:form>
+    </td>
+    </tr>
+</table>
 </body>
 </html>
