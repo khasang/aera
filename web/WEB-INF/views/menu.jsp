@@ -103,9 +103,10 @@
         });
     };
     //put story name
-    var PutStoryName = function (client_name) {
+    var PutStoryName = function (client_name,descr_name) {
         var JSONObject = {
-            'name': client_name
+            'name': client_name,
+            'descr_name': descr_name
         };
         $.ajax({
             type: 'PUT',
@@ -132,7 +133,7 @@
     <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
     Put Story name: <input type="text" id="ptName" value=""/>
     Description: <input type="text" id="ptDescr" value=""/>
-    <button type="button" onclick="PutStoryName($('#ptName').val())">
+    <button type="button" onclick="PutStoryName($('#ptName').val(),$('#ptDescr').val())">
         Try</button>
 </div>
 <div class="sidebar" id="response">
