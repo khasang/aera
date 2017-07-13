@@ -65,8 +65,7 @@
             success: function (result) {
                 clear();
                 result.forEach(function (item) {
-                    buildResult(item);
-                    document.getElementById('response').innerHTML += buildResult(item);
+                    document.getElementById('response').innerHTML += buildStoryLink(item);
                 });
             },
             error: function (jgXHR, textStatus, errorThrown) {
@@ -78,9 +77,10 @@
             document.getElementById('response').innerHTML = ' ';
         }
 
-        //builds 'buildString' var and places it to 'response' div
-        function buildResult(item) {
-            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>test</a><br>"
+        //build link to current story and places it to 'response' div
+        function buildStoryLink(item) {
+            var path = "/story/"+item.id;
+            var buildString = "<a href='"+ path +"'>" + item.name + "</a><br>";
             return buildString;
         }
     };
@@ -93,8 +93,6 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-                //$('#content').html(JSON.stringify(result));
-                //var t =  result.description;
                 document.getElementById('content').innerHTML="<h2>" + result.description +"</h2>";
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -102,8 +100,8 @@
             }
         });
     };
-    //put story name and description
-    var PutStoryName = function (client_name,descr_name) {
+    //add new story with name and description
+    var AddNewStory = function (client_name,descr_name) {
         var JSONObject = {
             'name': client_name,
             'description': descr_name
@@ -127,13 +125,16 @@
 
 <body>
 <div class="header"><h1>AERA</h1></div>
-<div class="navigation"><A style="color: white" HREF="javascript:void(0);"
-                           OnClick="Javascript:GetAllStories();return false;">STORIES</a>
-    Get Story by id <input type="text" id="putName" value=""/>
-    <button type="button" onclick="GetStoryById($('#putName').val())">Try</button>
-    Put Story name: <input type="text" id="ptName" value=""/>
-    Description: <input type="text" id="ptDescr" value=""/>
-    <button type="button" onclick="PutStoryName($('#ptName').val(),$('#ptDescr').val())">
+<div class="navigation">
+    <a style="color: white" HREF="javascript:void(0);"
+                           OnClick="Javascript:GetAllStories();return false;">
+        STORIES
+    </a>
+    Get Story by id <input type="text" id="storyId" value=""/>
+    <button type="button" onclick="GetStoryById($('#storyId').val())">Try</button>
+    Put Story name: <input type="text" id="putStoryName" value=""/>
+    Description: <input type="text" id="putStoryDescription" value=""/>
+    <button type="button" onclick="AddNewStory($('#putStoryName').val(),$('#putStoryDescription').val())">
         Try</button>
 </div>
 <div class="sidebar" id="response">
