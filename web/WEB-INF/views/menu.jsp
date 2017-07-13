@@ -80,8 +80,8 @@
         //build link to current story and places it to 'response' div
         function buildStoryLink(item) {
             var path = "/story/"+item.id;
-            var buildString = "<a href='"+ path +"'>" + item.name + "</a><br>";
-            return buildString;
+            var link = "<a href='"+ path +"'>" + item.name + "</a><br>";
+            return link;
         }
     };
 
