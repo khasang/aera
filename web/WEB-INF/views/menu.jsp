@@ -53,7 +53,6 @@
     </style>
 </head>
 <!-- Makes request-string for storyController and returns  -->
-<!-- get all stories  -->
 <script type="text/javascript">
     var service = "/story";
     //get all stories
@@ -66,14 +65,14 @@
             success: function (result) {
                 clear();
                 result.forEach(function (item) {
-                        buildResult(item);
-                        document.getElementById('response').innerHTML += buildResult(item);
-                        });
-                    },
-                    error:function (jgXHR, textStatus, errorThrown) {
-                    $('#response').html(JSON.stringify(jgXHR))
-                }
-            });
+                    buildResult(item);
+                    document.getElementById('response').innerHTML += buildResult(item);
+                });
+            },
+            error: function (jgXHR, textStatus, errorThrown) {
+                $('#response').html(JSON.stringify(igXHR))
+            }
+        });
         //cleans body 'response' before filling
         function clear() {
             document.getElementById('response').innerHTML = ' ';
@@ -81,7 +80,7 @@
 
         //builds 'buildString' var and places it to 'response' div
         function buildResult(item) {
-            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>$('item.name').val();</a><br>"
+            var buildString = "<a href='Javascript:' OnClick= 'Javascript: GetStoryById(" + item.id + ");return false;'>test</a><br>"
             return buildString;
         }
     };
@@ -90,13 +89,13 @@
     var GetStoryById = function (id) {
         $.ajax({
             type: 'GET',
-            url: service + "/get/story/" + id,
+            url: service + "/getById/" + id,
             dataType: 'json',
             async: false,
             success: function (result) {
                 //$('#content').html(JSON.stringify(result));
                 //var t =  result.description;
-                document.getElementById('content').innerHTML = "<h2>" + result.description + "</h2>";
+                document.getElementById('content').innerHTML="<h2>" + result.description +"</h2>";
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#content').html(JSON.stringify(jqXHR))
@@ -104,27 +103,28 @@
         });
     };
     //put story name and description
-        var PutStoryName = function (client_name) {
-            var JSONObject = {
-                'name': client_name,
-                'description': descr_name
-            };
-            $.ajax({
-                type: 'PUT',
-                url: service + "/add",
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(JSONObject),
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    $('#content').html(JSON.stringify(result));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#response').html(JSON.stringify(jqXHR))
-                }
-            });
+    var PutStoryName = function (client_name,descr_name) {
+        var JSONObject = {
+            'name': client_name,
+            'description': descr_name
         };
+        $.ajax({
+            type: 'PUT',
+            url: service + "/add",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(JSONObject),
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                $('#content').html(JSON.stringify(result));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+        });
+    };
 </script>
+
 <body>
 <div class="header"><h1>AERA</h1></div>
 <div class="navigation"><A style="color: white" HREF="javascript:void(0);"
@@ -134,15 +134,12 @@
     Put Story name: <input type="text" id="ptName" value=""/>
     Description: <input type="text" id="ptDescr" value=""/>
     <button type="button" onclick="PutStoryName($('#ptName').val(),$('#ptDescr').val())">
-        Try
-    </button>
+        Try</button>
 </div>
 <div class="sidebar" id="response">
 </div>
 <div class="content" id="content"></div>
 <div class="footer"></div>
-
-
 <table>
     <tr>
         <td>Add document</td>
@@ -161,6 +158,5 @@
         </td>
     </tr>
 </table>
-
 </body>
 </html>

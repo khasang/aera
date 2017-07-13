@@ -1,10 +1,8 @@
 package io.aera.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,27 +15,31 @@ public class Story {
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "description")
     private String description;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date = new Date();
+    @Column(name="date_modified", nullable = false)
+    private LocalDateTime dateModified = LocalDateTime.now();
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Chapter> storyChapters = new ArrayList<>();
+    @Column(name = "chapters")
+    private List<Chapter> chapters = new ArrayList<>();
 
-    public List<Chapter> getStoryChapters() {
-        return storyChapters;
+    public List<Chapter> getChapters() {
+        return chapters;
     }
 
-    public void setStoryChapters(List<Chapter> storyChapters) {
-        this.storyChapters = storyChapters;
+    public void setChapters(List<Chapter> storyChapters) {
+        this.chapters = storyChapters;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateModified() {
+        return dateModified;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateModified(LocalDateTime date) {
+        this.dateModified = date;
     }
 
     public String getName() {

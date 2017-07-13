@@ -6,12 +6,13 @@ import io.aera.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service("storyService")
 public class StoryServiceImpl implements StoryService {
     @Autowired
-    private StoryDao storyDao;
+    StoryDao storyDao;
 
     @Override
     public Story createStory(Story story) {
@@ -19,12 +20,23 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public List<Story> getStoryList() {
-        return storyDao.getList();
+    public Story getStoryById(long storyID) {
+        return storyDao.getById(storyID);
     }
 
     @Override
-    public Story getStoryById(long storyId) {
-        return storyDao.getById(storyId);
+    public void deleteStory(Long storyID) {
+        storyDao.deleteById(storyID);
+    }
+
+    @Override
+    public List<Story> getAllStories() {
+        return storyDao.getAllEnities();
+    }
+
+    @Override
+    public Story updateStory(Story story) {
+        story.setDateModified(LocalDateTime.now());
+        return storyDao.updateEntity(story);
     }
 }

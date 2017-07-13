@@ -10,23 +10,35 @@ import java.util.List;
 public interface StoryService {
 
     /**
-     * Create Story at database
-     *
+     * Create story at database
      * @param story - story for creation
      * @return story
      */
     Story createStory(Story story);
 
     /**
-     * Get Story from database by id
-     *
-     * @param storyId - unique id for story (PK)
-     * @return Story
+     * Get story from database by ID.
+     * @param storyID - unique story ID
+     * @return Story entity
      */
-    Story getStoryById(long storyId);
+    Story getStoryById(long storyID);
 
     /**
+     * Delete story from database by ID.
+     * @param storyID - unique story ID
+     */
+    void deleteStory(Long storyID);
+
+    /**
+     * Get all story entities from database
      * @return list of stories
      */
-    List<Story> getStoryList();
+    List<Story> getAllStories();
+
+    /**
+     * Update existing story     *
+     * @param story
+     * @return updated story
+     */
+    Story updateStory(Story story);
 }
