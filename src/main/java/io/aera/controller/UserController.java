@@ -76,18 +76,18 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView showUpdatePage(){
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public ModelAndView showUpdatePage(@PathVariable(value = "id") String id){
+        User user = userService.getById(Long.parseLong(id));
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/user/update");
+        modelAndView.setViewName("/user/update/" + user.getId());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User updateUserForm(@RequestBody User user, HttpServletRequest request){
-        Principal principal = request.getUserPrincipal();
-        User currentUser = userService.findByLogin(principal.getName());
+    public User updateUserForm(@RequestBody User user, @PathVariable(value = "id") String id){
+        User currentUser = userService.getById(Long.parseLong(id));
         updateUser(currentUser, user);
         return userService.update(currentUser);
     }
@@ -103,7 +103,7 @@ public class UserController {
         return oldUser;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     @ResponseBody
     public User getUserById(@PathVariable(value = "id") String id){
         User user = userService.getById(Long.parseLong(id));
