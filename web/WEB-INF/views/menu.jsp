@@ -141,23 +141,6 @@
 </div>
 <div class="content" id="content"></div>
 <div class="footer"></div>
-<table>
-    <tr>
-        <td>Add document</td>
-        <td><code><strong>POST</strong>/docment/add</code></td>
-        <td>
-            <h:form class="form-inline">
-                name: <input type="text" id="postName"  value="documentname"></input>
-                <br>
-                code: <input type="text" id="postCode" value="code"></input>
-                <br>
-                date: <input type="text" id="postDate" value="date"></input>
-                <br>
-                documentItem: <input type="text" id="postDocumentItem" value="documentItem"></input>
-                <button type="button" onclick="RestPost()">Try</button>
-            </h:form>
-        </td>
-    </tr>
-</table>
+
 </body>
 </html>
