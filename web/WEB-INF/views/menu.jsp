@@ -63,24 +63,53 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-                clear();
+            /*    clear();
                 result.forEach(function (item) {
                     document.getElementById('response').innerHTML += buildStoryLink(item);
+                });*/
+            //==============
+            //=============
+                var strongStart = "<strong>";
+                var strongEnd = "</strong>";
+                var total ="";
+                $.each(result,function () {
+                    var currentStory = this;
+                    var storyName = this.name;
+                    var dscr =this.description;
+                   total += strongStart + storyName + "--" + dscr + strongEnd + "<br>";
                 });
+                document.getElementById('response').innerHTML += total;
+                //$("sidebar").append(total) ;
+                //alert(tmpStart);
+            //=============
+                /*var tmp = "<strong>";
+                var tmpEnd = "</strong>";
+                var storyName = result.name;
+                var descr = result.description;
+                $.each(result.chapters,function () {
+                  var chapter = this;
+                  var chapterName = chapter.name;
+                  var chapterPrice = chapter.price;
+                  tmp += chapterName + "--" + chapterPrice + tmpEnd;
+                  tmp +="<br>";
+                  console.log(tmp);
+                });*/
+
+            //==============
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 $('#response').html(JSON.stringify(igXHR))
             }
         });
         //cleans body 'response' before filling
-        function clear() {
+        function clear(){
             document.getElementById('response').innerHTML = ' ';
         }
 
         //build link to current story and places it to 'response' div
         function buildStoryLink(item) {
-            var path = "/story/"+item.id;
-            var link = "<a href='"+ path +"'>" + item.name + "</a><br>";
+            var path = "/story/" + item.id;
+            var link = "<a href='" + path + "'><h4>" + item.name + "</h4></a>";
             return link;
         }
     };
@@ -92,16 +121,29 @@
             url: service + "/getById/" + id,
             dataType: 'json',
             async: false,
-            success: function (result) {
-                document.getElementById('content').innerHTML="<h2>" + result.description +"</h2>";
+            success: function (result){
+                exclude(result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#content').html(JSON.stringify(jqXHR))
             }
         });
+        function exclude(result) {
+            result.forEach(function (item) {
+                alert(item);
+            });
+            }
+            //var link = "<a href='"+ path +"'><h4>" + item.name + "</h4></a>";
+            //var tmp = item.chapters.name;
+            //alert("!!!");
+            //return item[0].name;
+
+
     };
+
+
     //add new story with name and description
-    var AddNewStory = function (client_name,descr_name) {
+    var AddNewStory = function (client_name, descr_name) {
         var JSONObject = {
             'name': client_name,
             'description': descr_name
@@ -127,7 +169,7 @@
 <div class="header"><h1>AERA</h1></div>
 <div class="navigation">
     <a style="color: white" HREF="javascript:void(0);"
-                           OnClick="Javascript:GetAllStories();return false;">
+       OnClick="Javascript:GetAllStories();return false;">
         STORIES
     </a>
     Get Story by id <input type="text" id="storyId" value=""/>
@@ -135,7 +177,8 @@
     Put Story name: <input type="text" id="putStoryName" value=""/>
     Description: <input type="text" id="putStoryDescription" value=""/>
     <button type="button" onclick="AddNewStory($('#putStoryName').val(),$('#putStoryDescription').val())">
-        Try</button>
+        Try
+    </button>
 </div>
 <div class="sidebar" id="response">
 </div>
