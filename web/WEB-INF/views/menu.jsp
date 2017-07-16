@@ -56,6 +56,10 @@
 <script type="text/javascript">
     var service = "/story";
     //get all stories
+    $("p").click(function () {
+        //alert("!!!");
+        console.log("!!!");
+    });
     var GetAllStories = function () {
         $.ajax({
             type: 'GET',
@@ -63,53 +67,25 @@
             dataType: 'json',
             async: false,
             success: function (result) {
-            /*    clear();
-                result.forEach(function (item) {
-                    document.getElementById('response').innerHTML += buildStoryLink(item);
-                });*/
-            //==============
-            //=============
-                var strongStart = "<strong>";
-                var strongEnd = "</strong>";
-                var total ="";
-                $.each(result,function () {
+                clear();
+                $.each(result, function () {
                     var currentStory = this;
-                    var storyName = this.name;
-                    var dscr =this.description;
-                   total += strongStart + storyName + "--" + dscr + strongEnd + "<br>";
+                    document.getElementById('response').innerHTML += buildStoryLink(currentStory);
                 });
-                document.getElementById('response').innerHTML += total;
-                //$("sidebar").append(total) ;
-                //alert(tmpStart);
-            //=============
-                /*var tmp = "<strong>";
-                var tmpEnd = "</strong>";
-                var storyName = result.name;
-                var descr = result.description;
-                $.each(result.chapters,function () {
-                  var chapter = this;
-                  var chapterName = chapter.name;
-                  var chapterPrice = chapter.price;
-                  tmp += chapterName + "--" + chapterPrice + tmpEnd;
-                  tmp +="<br>";
-                  console.log(tmp);
-                });*/
-
-            //==============
             },
             error: function (jgXHR, textStatus, errorThrown) {
                 $('#response').html(JSON.stringify(igXHR))
             }
         });
         //cleans body 'response' before filling
-        function clear(){
-            document.getElementById('response').innerHTML = ' ';
+        function clear() {
+            document.getElementById('response').innerHTML = '';
         }
 
         //build link to current story and places it to 'response' div
-        function buildStoryLink(item) {
-            var path = "/story/" + item.id;
-            var link = "<a href='" + path + "'><h4>" + item.name + "</h4></a>";
+        function buildStoryLink(currenStory) {
+            var path = "/story/" + currenStory.id;
+            var link = "<strong><a href='" + path + "'>" + currenStory.name + "</a></strong><br>";
             return link;
         }
     };
@@ -121,22 +97,33 @@
             url: service + "/getById/" + id,
             dataType: 'json',
             async: false,
-            success: function (result){
-                exclude(result);
+            success: function (result) {
+                document.getElementById('content').innerHTML = buildChapterLink(result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#content').html(JSON.stringify(jqXHR))
             }
         });
-        function exclude(result) {
-            result.forEach(function (item) {
-                alert(item);
+        function buildChapterLink(result) {
+            var link = "";
+            $.each(result.chapters, function () {
+                var currentChapter = this;
+                var chapterName = currentChapter.name;
+                var chapterPrice = currentChapter.price;
+                var link ="<h1>" + result.name + ":" + "</h1><br>"
+                    + "<strong>" + currentChapter.name + " -- " + "</strong><br>";
+               /* <a style="color: white" HREF="javascript:void(0);"
+                OnClick="Javascript:GetAllStories();return false;">
+                    STORIES
+                    </a>*/
+                //alert();
             });
-            }
-            //var link = "<a href='"+ path +"'><h4>" + item.name + "</h4></a>";
-            //var tmp = item.chapters.name;
-            //alert("!!!");
-            //return item[0].name;
+        }
+
+        //var link = "<a href='"+ path +"'><h4>" + item.name + "</h4></a>";
+        //var tmp = item.chapters.name;
+        //
+        //return item[0].name;
 
 
     };
@@ -156,6 +143,7 @@
             dataType: 'json',
             async: false,
             success: function (result) {
+
                 $('#content').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -163,6 +151,7 @@
             }
         });
     };
+
 </script>
 
 <body>
@@ -183,7 +172,7 @@
 <div class="sidebar" id="response">
 </div>
 <div class="content" id="content"></div>
-<div class="footer"></div>
+<div class="footer"><p>click</p></div>
 
 </body>
 </html>

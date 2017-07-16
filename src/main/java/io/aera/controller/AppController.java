@@ -25,7 +25,7 @@ public class AppController {
     // localhost:8080/
     @RequestMapping("/")
     public String hello(Model model){
-        return "menu";
+        return "menu2";
     }
 
     @RequestMapping("/create")
