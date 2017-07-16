@@ -3,7 +3,9 @@ package io.aera.controller;
 import io.aera.model.Cat;
 import io.aera.model.Dog;
 import io.aera.model.Message;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping
 public class AppController {
+    private static final Logger log = Logger.getLogger(AppController.class);
+
     @Autowired
     private Cat cat;
     @Autowired
@@ -25,6 +29,9 @@ public class AppController {
     // localhost:8080/
     @RequestMapping("/")
     public String hello(Model model){
+        log.error(AppController.class + "." + new Object(){}.getClass().getEnclosingMethod().getName()
+                + "Just enter to default page!");
+        model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
         return "story";
     }
 

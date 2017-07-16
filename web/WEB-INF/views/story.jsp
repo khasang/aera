@@ -45,6 +45,7 @@
 </script>
 
 <body>
+    <h1>Current user is: ${username}</h1>
     <table class="table">
         <thead/>
         <tr>
