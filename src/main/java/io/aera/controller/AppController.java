@@ -24,10 +24,11 @@ public class AppController {
     // localhost:8080/
     @RequestMapping("/")
     public String hello(Model model) {
-        message.setMessageInfo("Big ane fat cat Tihon!");
-        model.addAttribute("attr", message.getMessage());
+        //message.setMessageInfo("Big ane fat cat Tihon!");
+        //model.addAttribute("attr", message.getMessage());
         //model.addAttribute("attr", cat.getName());
-        return "index";
+        //return "index";
+        return "story";
     }
 
     @RequestMapping("/create")
