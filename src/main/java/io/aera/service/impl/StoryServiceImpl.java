@@ -1,4 +1,3 @@
-/*
 package io.aera.service.impl;
 
 import io.aera.dao.StoryDao;
@@ -28,7 +27,6 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public Story getStoryById(long storyId) {
-        return storyDao.getById(storyId);
+        return storyDao.getEntityById(storyId);
     }
 }
-*/

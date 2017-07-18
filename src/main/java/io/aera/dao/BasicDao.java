@@ -29,7 +29,7 @@ public interface BasicDao<T> {
      * @param id - current id of entity
      * @return entity
      */
-    T getById(long id);
+    T getEntityById(long id);
 
     /**
      * @return list from entity
@@ -42,7 +42,7 @@ public interface BasicDao<T> {
      * @param login
      * @return entity
      */
-    T findUserByLogin(String login);
+    T findEntityByName(String login);
 
     /**
      * Updates entity in the database
@@ -51,4 +51,12 @@ public interface BasicDao<T> {
      * @return updated entity
      */
     T update(T entity);
+
+    /**
+     * Removes user from database
+     *
+     * @param entity
+     * @return null
+     */
+    T delete(T entity);
 }

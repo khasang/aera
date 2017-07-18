@@ -1,8 +1,11 @@
 package io.aera.config;
 
 import io.aera.dao.StoryDao;
+import io.aera.dao.UserDao;
 import io.aera.dao.impl.StoryDaoImpl;
+import io.aera.dao.impl.UserDaoImpl;
 import io.aera.entity.Story;
+import io.aera.entity.User;
 import io.aera.model.Cat;
 import io.aera.model.impl.CatImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +42,11 @@ public class AppConfig {
     @Bean
     StoryDao storyDao(){
         return new StoryDaoImpl(Story.class);
+    }
+
+    @Bean
+    UserDao userDao() {
+        return new UserDaoImpl(User.class);
     }
 
     @Bean

@@ -5,11 +5,12 @@ import io.aera.entity.User;
 import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@Transactional
 public class UserControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/user";
     private final String REGISTER = "/register";

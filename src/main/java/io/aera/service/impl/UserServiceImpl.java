@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Qualifier("userService")
 public class UserServiceImpl implements UserService {
@@ -20,16 +22,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(long id) {
-        return userDao.getById(id);
+        return userDao.getEntityById(id);
     }
 
     @Override
     public User findByLogin(String login) {
-        return userDao.findUserByLogin(login);
+        return userDao.findEntityByName(login);
     }
 
     @Override
     public User update(User user) {
         return userDao.update(user);
+    }
+
+    @Override
+    public List<User> getListofUsers(){
+        return userDao.getList();
+    }
+
+    @Override
+    public User deleteStory(long id) {
+        return userDao.delete(userDao.getEntityById(id));
     }
 }

@@ -2,6 +2,8 @@ package io.aera.service;
 
 import io.aera.entity.User;
 
+import java.util.List;
+
 /**
  * Used for user functionality (register, profile, etc)
  */
@@ -35,4 +37,18 @@ public interface UserService {
      * @return updated user
      */
     User update(User user);
+
+    /**
+     * Returns list of users
+     *
+     * @return list of users
+     */
+    List<User> getListofUsers();
+
+    /**
+     * Deletes story by id
+     *
+     * @param id
+     */
+    User deleteStory(long id);
 }

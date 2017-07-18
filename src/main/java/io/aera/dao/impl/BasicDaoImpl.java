@@ -42,7 +42,12 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public T findUserByLogin(String login) {
+    public T getEntityById(long id) {
+        return getCurrentSession().get(entityClass, id);
+    }
+
+    @Override
+    public T findEntityByName(String login) {
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(entityClass);
         Root<T> root = criteria.from(entityClass);
@@ -57,7 +62,8 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public T getById(long id) {
-        return getCurrentSession().get(entityClass, id);
+    public T delete(T entity) {
+        getCurrentSession().delete(entity);
+        return entity;
     }
 }

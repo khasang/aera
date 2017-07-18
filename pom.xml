@@ -19,8 +19,6 @@
         <jackson.version>2.7.8</jackson.version>
         <junit.version>4.12</junit.version>
         <junit.param.version>1.0.4</junit.param.version>
-        <hsqldb.version>1.8.0.10</hsqldb.version>
-        <h2.version>1.4.194</h2.version>
     </properties>
 
     <dependencies>
@@ -90,22 +88,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
-        </dependency>
-
-        <!-- HSQLDB -->
-        <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- H2 -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- Javax -->
