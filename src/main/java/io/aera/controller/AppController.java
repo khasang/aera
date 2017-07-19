@@ -23,10 +23,15 @@ public class AppController {
     private Dog dog;
 
     // localhost:8080/
-    @RequestMapping("/")
+    @RequestMapping("/story")
     public String hello(Model model){
         return "story";
     }
+
+    @RequestMapping("/")
+    public String typePersonage() {
+        return "typePersonage";
+    };
 
     @RequestMapping("/create")
     public String createDogTable(Model model){

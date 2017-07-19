@@ -26,7 +26,7 @@ public class TypePersonageController {
         return typePersonageService.createTypePersonage(typePersonage);
     }
 
-    @RequestMapping(value = "/get/type_person/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public TypePersonage typePersonage(@PathVariable(value = "id") String id) {
         return typePersonageService.getTypePersonageById(Long.parseLong(id));
