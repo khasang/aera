@@ -4,6 +4,7 @@ import io.aera.entity.History;
 import io.aera.entity.User;
 import io.aera.service.HistoryService;
 import io.aera.service.UserService;
+import rg.apache.log4j.Logger;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +25,7 @@ import java.util.Date;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private static final Logger log = Logger.getLogger(AppController.class);
+    private static final Logger log = Logger.getLogger(UserController.class);
     @Autowired
     UserService userService;
 
