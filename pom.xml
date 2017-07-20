@@ -19,6 +19,7 @@
         <jackson.version>2.7.8</jackson.version>
         <junit.version>4.12</junit.version>
         <junit.param.version>1.0.4</junit.param.version>
+        <log4j.version>1.2.17</log4j.version>
     </properties>
 
     <dependencies>
@@ -136,6 +137,13 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.11</version>
+        </dependency>
+
+        <!-- Logger -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 

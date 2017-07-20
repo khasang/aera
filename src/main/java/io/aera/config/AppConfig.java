@@ -1,9 +1,13 @@
 package io.aera.config;
 
+import io.aera.dao.BasicDao;
+import io.aera.dao.HistoryDao;
 import io.aera.dao.StoryDao;
 import io.aera.dao.UserDao;
+import io.aera.dao.impl.HistoryDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
 import io.aera.dao.impl.UserDaoImpl;
+import io.aera.entity.History;
 import io.aera.entity.Story;
 import io.aera.entity.User;
 import io.aera.model.Cat;
@@ -47,6 +51,11 @@ public class AppConfig {
     @Bean
     UserDao userDao() {
         return new UserDaoImpl(User.class);
+    }
+
+    @Bean
+    HistoryDao historyDao() {
+        return new HistoryDaoImpl(History.class);
     }
 
     @Bean

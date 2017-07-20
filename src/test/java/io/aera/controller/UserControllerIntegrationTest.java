@@ -2,6 +2,7 @@ package io.aera.controller;
 
 import io.aera.entity.Roles;
 import io.aera.entity.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @Transactional
+@Ignore
 public class UserControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/user";
     private final String REGISTER = "/register";

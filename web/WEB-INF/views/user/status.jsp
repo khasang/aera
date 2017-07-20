@@ -11,6 +11,6 @@
 <p>UserLastName: <strong>${user.lastname}</strong></p>
 <p>UserEmail: <strong>${user.email}</strong></p>
 <br>
-<p><a href="<c:url value="/user/update/${user.id}" />">Update</a></p>
+<a href="<c:url value="/user/update" />">Update</a>
 </body>
 </html>
