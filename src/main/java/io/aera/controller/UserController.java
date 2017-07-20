@@ -4,7 +4,6 @@ import io.aera.entity.History;
 import io.aera.entity.User;
 import io.aera.service.HistoryService;
 import io.aera.service.UserService;
-import rg.apache.log4j.Logger;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,11 +53,12 @@ public class UserController {
     @ResponseBody
     public User registerUser(@RequestBody User user) throws Exception {
         try {
-            //log.debug(UserController.class + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "New User Registering!");
+            log.debug("UserController.registerUser: New User Registering!");
             userService.register(user);
             return user;
         }
         catch (Exception e) {
+            log.debug("UserController.registerUser: User already exists!");
             throw new Exception("User already exists");
         }
     }
@@ -84,6 +84,8 @@ public class UserController {
     public ModelAndView showProfileForm(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         User user = userService.findByLogin(principal.getName());
+        if (user == null)
+            log.debug("UserController.showProfileForm: User not found!");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/status");
         modelAndView.addObject("user", user);
@@ -132,6 +134,7 @@ public class UserController {
                 RequestContextHolder.currentRequestAttributes().getSessionId(),
                 details.getRemoteAddress());
         historyService.createHistory(history);
+        log.debug("UserController.updateUserForm: " + SecurityContextHolder.getContext().getAuthentication().getName() + " Try to update user data!");
         return userService.update(currentUser);
     }
 
