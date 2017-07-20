@@ -24,7 +24,7 @@ import java.util.Date;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private static final Logger log = Logger.getLogger(AppController.class);
+    private static final Logger log = Logger.getLogger(UserController.class);
     @Autowired
     UserService userService;
 
@@ -53,12 +53,13 @@ public class UserController {
     @ResponseBody
     public User registerUser(@RequestBody User user) throws Exception {
         try {
-            //log.debug(UserController.class + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "New User Registering!");
+            log.debug("UserController.registerUser: New User Registering!");
             userService.register(user);
             historyService.register();
             return user;
         }
         catch (Exception e) {
+            log.debug("UserController.registerUser: User already exists!");
             throw new Exception("User already exists");
         }
     }
@@ -84,6 +85,8 @@ public class UserController {
     public ModelAndView showProfileForm(HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
         User user = userService.findByLogin(principal.getName());
+        if (user == null)
+            log.debug("UserController.showProfileForm: User not found!");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/status");
         modelAndView.addObject("user", user);
@@ -117,6 +120,7 @@ public class UserController {
         User currentUser = userService.findByLogin(principal.getName());
         updateUser(currentUser, user);
         historyService.updateForm();
+        log.debug("UserController.updateUserForm: " + SecurityContextHolder.getContext().getAuthentication().getName() + " Try to update user data!");
         return userService.update(currentUser);
     }
 
