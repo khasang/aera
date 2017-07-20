@@ -55,6 +55,7 @@ public class UserController {
         try {
             //log.debug(UserController.class + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "New User Registering!");
             userService.register(user);
+            historyService.register();
             return user;
         }
         catch (Exception e) {
@@ -86,12 +87,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/status");
         modelAndView.addObject("user", user);
-        WebAuthenticationDetails details = (WebAuthenticationDetails)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        History history = new History(new Date(), "Profile Page!",
-                SecurityContextHolder.getContext().getAuthentication().getName(),
-                RequestContextHolder.currentRequestAttributes().getSessionId(),
-                details.getRemoteAddress());
-        historyService.createHistory(history);
+        historyService.profile();
         return modelAndView;
     }
 
@@ -104,12 +100,7 @@ public class UserController {
     public ModelAndView showUpdatePage(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/update");
-        WebAuthenticationDetails details = (WebAuthenticationDetails)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        History history = new History(new Date(), "Sent Request to update User!",
-                SecurityContextHolder.getContext().getAuthentication().getName(),
-                RequestContextHolder.currentRequestAttributes().getSessionId(),
-                details.getRemoteAddress());
-        historyService.createHistory(history);
+        historyService.update();
         return modelAndView;
     }
 
@@ -125,12 +116,7 @@ public class UserController {
         Principal principal = request.getUserPrincipal();
         User currentUser = userService.findByLogin(principal.getName());
         updateUser(currentUser, user);
-        WebAuthenticationDetails details = (WebAuthenticationDetails)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        History history = new History(new Date(), "Updating User!",
-                SecurityContextHolder.getContext().getAuthentication().getName(),
-                RequestContextHolder.currentRequestAttributes().getSessionId(),
-                details.getRemoteAddress());
-        historyService.createHistory(history);
+        historyService.updateForm();
         return userService.update(currentUser);
     }
 
@@ -166,12 +152,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/user/status");
         modelAndView.addObject("user", user);
-        WebAuthenticationDetails details = (WebAuthenticationDetails)SecurityContextHolder.getContext().getAuthentication().getDetails();
-        History history = new History(new Date(), "Finding User!",
-                SecurityContextHolder.getContext().getAuthentication().getName(),
-                RequestContextHolder.currentRequestAttributes().getSessionId(),
-                details.getRemoteAddress());
-        historyService.createHistory(history);
+        historyService.findById();
         return user;
     }
 }

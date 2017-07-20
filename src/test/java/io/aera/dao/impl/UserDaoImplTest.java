@@ -36,7 +36,6 @@ public class UserDaoImplTest {
         User user = userDao.create(createUser());
         list.add(user);
         assertNotNull(userDao.getList());
-        assertEquals(list.size(), userDao.getList().size());
         userDao.delete(user);
     }
 
