@@ -19,10 +19,10 @@ public class HistoryServiceImpl implements HistoryService {
     HistoryDao historyDao;
 
     @Override
-    public History register(){
+    public History register(String userLogin){
         WebAuthenticationDetails details = (WebAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
         History history = new History(new Date(), "Registering new User!",
-                SecurityContextHolder.getContext().getAuthentication().getName(),
+                userLogin,
                 RequestContextHolder.currentRequestAttributes().getSessionId(),
                 details.getRemoteAddress());
         return historyDao.create(history);

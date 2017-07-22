@@ -55,7 +55,7 @@ public class UserController {
         try {
             log.debug("UserController.registerUser: New User Registering!");
             userService.register(user);
-            historyService.register();
+            historyService.register(user.getLogin());
             return user;
         }
         catch (Exception e) {

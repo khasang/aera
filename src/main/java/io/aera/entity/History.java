@@ -16,6 +16,14 @@ public class History {
     private String currentSession;
     private String ipAddress;
 
+    public History() {
+        this.date = new Date();
+        this.description = "";
+        this.userLogin = "";
+        this.currentSession = "";
+        this.ipAddress = "";
+    }
+
     public History(Date date, String description, String userLogin, String currentSession, String ipAddress) {
         this.date = date;
         this.description = description;

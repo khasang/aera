@@ -1,23 +1,43 @@
 package io.aera.controller;
 
+import io.aera.config.AppConfig;
+import io.aera.config.application.WebConfig;
+import io.aera.entity.History;
 import io.aera.entity.Roles;
 import io.aera.entity.User;
+import org.hibernate.SessionFactory;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {WebConfig.class, AppConfig.class})
+@WebAppConfiguration
 @Transactional
-@Ignore
+//@Ignore
 public class UserControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/user";
     private final String REGISTER = "/register";
     private final String UPDATE = "/update";
     private final String FINDUSER = "/findById";
+
+    @Autowired
+    SessionFactory sessionFactory;
 
     @Test
     public void createTestUser(){
@@ -32,8 +52,19 @@ public class UserControllerIntegrationTest {
                 user.getId());
 
         User result = responseEntity.getBody();
+
+        List<History> historyItems = findHistory(user.getLogin(), "Registering new User!");
         assertNotNull(result);
         assertEquals(user.getLogin(), result.getLogin());
+        assertTrue(historyItems.size() > 0);
+    }
+
+    private List findHistory(String login, String descr) {
+        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery(History.class);
+        Root<History> root = criteria.from(History.class);
+        criteria.select(root).where(builder.equal(root.get("userLogin"), login), builder.like(root.get("description"), descr));
+        return sessionFactory.getCurrentSession().createQuery(criteria).getResultList();
     }
 
     @Test

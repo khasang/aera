@@ -11,9 +11,10 @@ public interface HistoryService {
     /**
      * Writes history about new users' registration to the database
      *
+     * @param userLogin new user login
      * @return history
      */
-    History register();
+    History register(String userLogin);
 
     /**
      * Writes history to the database about showing profile page of the authenticated User
