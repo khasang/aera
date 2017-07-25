@@ -16,7 +16,7 @@ public class PersonageController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Personage> getPersonageList(){
+    public List<Personage> getPersonageList() {
         return personageService.getPersonageList();
     }
 
@@ -26,7 +26,7 @@ public class PersonageController {
         return personageService.createPersonage(personage);
     }
 
-    @RequestMapping(value = "/get/person/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Personage personage(@PathVariable(value = "id") String id) {
         return personageService.getPersonageById(Long.parseLong(id));

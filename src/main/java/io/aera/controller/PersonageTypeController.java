@@ -1,7 +1,7 @@
 package io.aera.controller;
 
-import io.aera.entity.TypePersonage;
-import io.aera.service.TypePersonageService;
+import io.aera.entity.PersonageType;
+import io.aera.service.PersonageTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,37 +10,37 @@ import java.util.List;
 
 @RequestMapping("/type_personage")
 @Controller
-public class TypePersonageController {
+public class PersonageTypeController {
     @Autowired
-    private TypePersonageService typePersonageService;
+    private PersonageTypeService personageTypeService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<TypePersonage> getTypePersonageList(){
-        return typePersonageService.getTypePersonageList();
+    public List<PersonageType> getTypePersonageList(){
+        return personageTypeService.getTypePersonageList();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public TypePersonage addTypePersonage(@RequestBody TypePersonage typePersonage) {
-        return typePersonageService.createTypePersonage(typePersonage);
+    public PersonageType addTypePersonage(@RequestBody PersonageType personageType) {
+        return personageTypeService.createTypePersonage(personageType);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public TypePersonage typePersonage(@PathVariable(value = "id") String id) {
-        return typePersonageService.getTypePersonageById(Long.parseLong(id));
+    public PersonageType typePersonage(@PathVariable(value = "id") String id) {
+        return personageTypeService.getTypePersonageById(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public TypePersonage updateTypePersonage(@RequestBody TypePersonage typePersonage) {
-        return typePersonageService.updateTypePersonage(typePersonage);
+    public PersonageType updateTypePersonage(@RequestBody PersonageType personageType) {
+        return personageTypeService.updateTypePersonage(personageType);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deletePersonage(@PathVariable(value = "id") String id) {
-        typePersonageService.deleteTypePersonById(Long.parseLong(id));
+        personageTypeService.deleteTypePersonById(Long.parseLong(id));
     }
 }

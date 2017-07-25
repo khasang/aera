@@ -44,7 +44,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    DriverManagerDataSource dataSource(){
+    DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getProperty("hibernate.driverClass"));
         dataSource.setUrl(environment.getProperty("hibernate.url"));
@@ -55,7 +55,7 @@ public class HibernateConfig {
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory s){
+    public HibernateTransactionManager transactionManager(SessionFactory s) {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(s);
         return txManager;

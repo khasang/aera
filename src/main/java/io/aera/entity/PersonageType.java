@@ -4,18 +4,15 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Table(name = "type_person")
-public class TypePersonage {
+@Table(name = "personage_types")
+public class PersonageType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tpers_id")
+    @Column(name = "personage_type_id")
     private long id;
-    @Column(name = "tpers_name")
+    @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Personage> personages = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -31,13 +28,5 @@ public class TypePersonage {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Personage> getPersonage() {
-        return personages;
-    }
-
-    public void setPersonage(List<Personage> personages) {
-        this.personages = personages;
     }
 }

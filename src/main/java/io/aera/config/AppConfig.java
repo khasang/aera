@@ -2,17 +2,13 @@ package io.aera.config;
 
 import io.aera.dao.PersonageDao;
 import io.aera.dao.StoryDao;
-import io.aera.dao.TypePersonageDao;
+import io.aera.dao.PersonageTypeDao;
 import io.aera.dao.impl.PersonageDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
-import io.aera.dao.impl.TypePersonageDaoImpl;
+import io.aera.dao.impl.PersonageTypeDaoImpl;
 import io.aera.entity.Personage;
 import io.aera.entity.Story;
-import io.aera.entity.TypePersonage;
-import io.aera.model.Cat;
-import io.aera.model.Dog;
-import io.aera.model.impl.CatImpl;
-import org.hibernate.Session;
+import io.aera.entity.PersonageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,17 +19,19 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
-import java.util.List;
-
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 public class AppConfig {
+    private final Environment environment;
+
     @Autowired
-    private Environment environment;
+    public AppConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
         jdbcImpl.setDataSource(dataSource());
         jdbcImpl.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -42,12 +40,7 @@ public class AppConfig {
     }
 
     @Bean
-    public Cat cat(){
-        return new CatImpl("Riska");
-    }
-
-    @Bean
-    StoryDao storyDao(){
+    StoryDao storyDao() {
         return new StoryDaoImpl(Story.class);
     }
 
@@ -57,12 +50,12 @@ public class AppConfig {
     }
 
     @Bean
-    TypePersonageDao typePersonageDao() {
-        return new TypePersonageDaoImpl(TypePersonage.class);
+    PersonageTypeDao typePersonageDao() {
+        return new PersonageTypeDaoImpl(PersonageType.class);
     }
 
     @Bean
-    DriverManagerDataSource dataSource(){
+    DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getProperty("jdbc.postgresql.url"));
@@ -72,14 +65,9 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    Dog dog(){
-        return new Dog(jdbcTemplate());
     }
 }

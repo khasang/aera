@@ -3,16 +3,22 @@ package io.aera.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "personage")
+@Table(name = "personages")
 public class Personage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "pers_id")
+    @Column(name = "personage_id")
     private long id;
-    @Column(name = "pers_name")
+    @Column(name = "name")
     private String name;
-    @Column(name = "pers_level")
+    @Column(name = "level")
     private int level;
+
+/*
+    @OneToMany
+    @Column(name = "personage_type_id")
+    private PersonageType personageType;
+*/
 
     public long getId() {
         return id;
@@ -37,4 +43,14 @@ public class Personage {
     public void setLevel(int level) {
         this.level = level;
     }
+
+/*
+    public PersonageType getPersonageType() {
+        return personageType;
+    }
+
+    public void setPersonageType(PersonageType personageType) {
+        this.personageType = personageType;
+    }
+*/
 }
