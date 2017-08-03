@@ -1,0 +1,42 @@
+body, #mainWrapper {
+    height: 100%;
+    background-color: rgb(245,245,245);
+}
+
+body {
+    font-size: 12px;
+}
+
+.has-error {
+    color: red;
+}
+
+.floatRight {
+    float: right;
+    margin-right: 2.5rem;
+}
+
+.generic-container {
+    width: 86%;
+    margin-left: 7%;
+    margin-top: 1.667rem;
+    margin-bottom: 1.667rem;
+    background-color: #eae7e7;
+    border: 0.08333rem solid #dddddd;
+    border-radius: 0.3334rem;
+    box-shadow: 0 0 2.5rem black;
+}
+
+.col-md-7 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.col-md-3.control-label {
+    margin-left: 0.5rem;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+}

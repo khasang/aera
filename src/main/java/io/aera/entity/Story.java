@@ -1,5 +1,7 @@
 package io.aera.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +23,15 @@ public class Story {
 
     @Column(name="date_modified", nullable = false)
     private LocalDateTime dateModified = LocalDateTime.now();
+
+    /*@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "background_image_fk")
+    private Image backgroundImage;
+    */
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "background_image_fk")
+    //@JsonIgnore
+    private Document backgroundImage;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(name = "chapters")
@@ -66,5 +77,13 @@ public class Story {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Document getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(Document backgroundImage) {
+        this.backgroundImage = backgroundImage;
     }
 }

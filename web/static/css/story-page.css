@@ -1,0 +1,22 @@
+body {
+    height: 100%;
+    font-size: 12px;
+}
+
+.table-container {
+    padding-left: 1.25rem;
+}
+
+.generic-container {
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 8rem;
+    margin-bottom: 1.25rem;
+    border: 0.0625rem solid #dddddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1.875rem black;
+}
+
+.panel-heading {
+    font-size: 1.25rem;
+}

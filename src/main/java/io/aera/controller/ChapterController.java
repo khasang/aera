@@ -19,20 +19,12 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
 
-    /*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView getStory(@PathVariable(value = "id") String id){
-        Story story = storyService.getStoryById(Long.parseLong(id));
-        return new ModelAndView("story-page", "story", story);
-    }*/
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getChapter(@PathVariable(value = "id") String id){
         Chapter chapter = chapterService.getChapterById(Long.parseLong(id));
         return new ModelAndView("chapter-page", "chapter", chapter);
     }
-
 
     @RequestMapping(value = "/add/{storyID}",
             method = RequestMethod.PUT,

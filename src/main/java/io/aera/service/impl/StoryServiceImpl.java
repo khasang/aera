@@ -39,4 +39,24 @@ public class StoryServiceImpl implements StoryService {
         story.setDateModified(LocalDateTime.now());
         return storyDao.updateEntity(story);
     }
+
+    /*@Override
+    public void changeImage(Long storyId, Image image) {
+        Story story = storyDao.getById(storyId);
+        if(story==null){
+            throw new StoryNotFoundException(String.format("Story with id $s was not found", storyId));
+        }
+        story.setBackgroundImage(image);
+        storyDao.updateEntity(story);
+    }
+
+    @Override
+    public void removeImage(Long storyId) {
+        Story story = storyDao.getById(storyId);
+        if(story==null){
+            throw new StoryNotFoundException(String.format("Story with id $s was not found", storyId));
+        }
+        story.setBackgroundImage(null);
+        storyDao.updateEntity(story);
+    }*/
 }

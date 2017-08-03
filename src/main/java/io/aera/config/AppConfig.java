@@ -6,9 +6,6 @@ import io.aera.dao.impl.ChapterDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
 import io.aera.entity.Chapter;
 import io.aera.entity.Story;
-import io.aera.model.Cat;
-import io.aera.model.Dog;
-import io.aera.model.impl.CatImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,11 +33,6 @@ public class AppConfig {
     }
 
     @Bean
-    public Cat cat(){
-        return new CatImpl("Riska");
-    }
-
-    @Bean
     StoryDao storyDao(){
         return new StoryDaoImpl(Story.class);
     }
@@ -65,10 +57,5 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    Dog dog(){
-        return new Dog(jdbcTemplate());
     }
 }

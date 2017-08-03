@@ -1,15 +1,12 @@
 <%@ taglib prefix="h" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Just shows the Game menu
---%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Menu</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
-    <script src="js/menu.js"></script>
-    <link rel="stylesheet" href="css/menu.css"/>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
+    <script src="<c:url value="../../static/js/menu.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="../../static/css/menu.css"/>"/>
 </head>
 
 <body>
