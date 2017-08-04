@@ -48,6 +48,11 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
+    public boolean deleteChapterById(long id) {
+        return chapterDao.deleteById(Chapter.class, id);
+    }
+
+    @Override
     public List<Chapter> getAllChapters() {
         return chapterDao.getAllEnities();
     }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="<c:url value="../../static/css/app.css"/>">
+    <link href="<c:url value="../../static/css/story_chapter-page.css"/>" rel="stylesheet"/>
 </head>
 <body>
     <div class="generic-container">
@@ -48,6 +48,34 @@
                 </div>
             </div>
         </form:form>
+
+        <div class="generic-container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="lead">Chapters</span>
+                </div>
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Chapter name</td>
+                                <td>Price</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${story.chapters}" var="chapter">
+                                <tr>
+                                    <td>${chapter.name}</td>
+                                    <td>${chapter.goldPrice}$</td>
+                                    <td><a href="<c:url value="/chapter/edit-chapter-${chapter.id}"/>" class="btn btn-success">edit</a></td>
+                                    <td><a href="<c:url value="/chapter/remove/${story.id}-${chapter.id}"/>" class="btn btn-danger">delete</a></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
         <div id="backgroundImage">

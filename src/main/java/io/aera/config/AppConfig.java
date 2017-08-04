@@ -1,10 +1,13 @@
 package io.aera.config;
 
 import io.aera.dao.ChapterDao;
+import io.aera.dao.DocumentDao;
 import io.aera.dao.StoryDao;
 import io.aera.dao.impl.ChapterDaoImpl;
+import io.aera.dao.impl.DocumentDaoImpl;
 import io.aera.dao.impl.StoryDaoImpl;
 import io.aera.entity.Chapter;
+import io.aera.entity.Document;
 import io.aera.entity.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +43,11 @@ public class AppConfig {
     @Bean
     ChapterDao chapterDao() {
         return new ChapterDaoImpl(Chapter.class);
+    }
+
+    @Bean
+    DocumentDao documentDao(){
+        return new DocumentDaoImpl();
     }
 
     @Bean

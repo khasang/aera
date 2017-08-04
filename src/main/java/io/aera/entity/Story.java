@@ -86,4 +86,27 @@ public class Story {
     public void setBackgroundImage(Document backgroundImage) {
         this.backgroundImage = backgroundImage;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Story)) return false;
+
+        Story story = (Story) o;
+
+        if (getId() != story.getId()) return false;
+        if (!getName().equals(story.getName())) return false;
+        if (getDescription() != null ? !getDescription().equals(story.getDescription()) : story.getDescription() != null)
+            return false;
+        return getChapters() != null ? getChapters().equals(story.getChapters()) : story.getChapters() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getChapters() != null ? getChapters().hashCode() : 0);
+        return result;
+    }
 }
