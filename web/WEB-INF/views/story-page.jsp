@@ -44,9 +44,6 @@
                 </table>
             </div>
         </div>
-        <div class="btn btn-success custom-width">
-            <a href="<c:url value="/add-document-${story.id}"/>">Click here to upload/manage your image</a>
-        </div>
 
         <div class="story-edit">
             <p>Edit icon as a link:

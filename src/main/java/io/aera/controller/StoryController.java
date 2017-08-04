@@ -3,16 +3,15 @@ package io.aera.controller;
 import com.google.common.base.Preconditions;
 import io.aera.entity.Story;
 import io.aera.service.StoryService;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequestMapping("/story")
@@ -49,12 +48,14 @@ public class StoryController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public void deleteStory(@PathVariable(value = "id") String id){
         storyService.deleteStory(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public Story updateStory(@RequestBody Story story){
         Preconditions.checkNotNull(story);
@@ -70,12 +71,16 @@ public class StoryController {
     }
 
     @RequestMapping(value = "/edit-story-{storyId}", method = RequestMethod.POST)
-    public String updateStory(@RequestBody Story story, BindingResult result, ModelMap modelMap, @PathVariable long storyId){
+    public String updateStory(@Valid Story story, BindingResult result, @PathVariable long storyId){
         if (result.hasErrors()){
             return "story-page";
         }
         Preconditions.checkNotNull(story);
-        storyService.updateStory(story);
+        Story story_upd = storyService.getStoryById(story.getId());
+        story_upd.setName(story.getName());
+        story_upd.setDescription(story.getDescription());
+        story_upd.setDateModified(LocalDateTime.now());
+        storyService.updateStory(story_upd);
         return "redirect:/story/"+story.getId();
     }
 }

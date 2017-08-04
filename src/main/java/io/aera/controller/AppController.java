@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AppController {
 
     // localhost:8080/
-    @RequestMapping("/")
+    @RequestMapping(value = {"/", "/home"})
     public String hello(Model model){
         return "menu";
     }

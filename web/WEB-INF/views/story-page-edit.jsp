@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="form-actions floatRight">
                     <c:if test="${edit}">
-                        <input type="submit" value="Update" class="btn btn-primary btn-sm"> or <a href="/story/${story.id}">Cancel</a>
+                        <input type="submit" value="Update" class="btn btn-primary btn-sm" href="/"> or <a href="/story/${story.id}">Cancel</a>
                     </c:if>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     <form method="post" action="/doUpload-${story.id}" enctype="multipart/form-data">
                         <tr>
                             <td>Pick file:</td>
-                            <td><input type="file" name="fileToUpload" size="50" /></td>
+                            <td><input type="file" name="fileToUpload" size="50" accept="image/x-png,image/gif,image/jpeg,image/jpg" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" value="Upload" /></td>

@@ -1,5 +1,6 @@
 package io.aera.controller;
 
+import com.google.common.base.Preconditions;
 import io.aera.entity.Document;
 import io.aera.entity.Story;
 import io.aera.service.DocumentService;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Controller
 public class DocumentController {
@@ -26,16 +28,12 @@ public class DocumentController {
     @Autowired
     private StoryService storyService;
 
-    @RequestMapping(value = "/documents", method = RequestMethod.GET)
-    public String showUploadForm(HttpServletRequest request){
-        return "addingdocument";
-    }
-
     @RequestMapping(value = "/doUpload-{storyId}", method = RequestMethod.POST)
     public String handleFileUpload(@PathVariable long storyId, @RequestParam CommonsMultipartFile fileToUpload){
         Story story = storyService.getStoryById(storyId);
         if(story!=null && fileToUpload!=null){
             story.setBackgroundImage(getDocumentInfo(fileToUpload));
+            story.setDateModified(LocalDateTime.now());
             storyService.updateStory(story);
         }
         return "redirect:/story/edit-story-".concat(Long.toString(storyId));
@@ -51,13 +49,12 @@ public class DocumentController {
     }
 
     @RequestMapping(value = "/remove-document-{storyId}-{documentId}", method = RequestMethod.GET)
-    @ResponseBody
-    public void removeDocument(@PathVariable long storyId, @PathVariable String documentId){
+    public String removeDocument(@PathVariable long storyId, @PathVariable String documentId){
         Story story = storyService.getStoryById(storyId);
-        if(story!=null){
-            story.setBackgroundImage(null);
-            documentService.removeDocumentById(documentId);
-        }
+        Preconditions.checkNotNull(story).setBackgroundImage(null);
+        storyService.updateStory(story);
+        documentService.removeDocumentById(documentId);
+        return "redirect:/story/edit-story-"+storyId;
     }
 
     private Document getDocumentInfo(CommonsMultipartFile file){
