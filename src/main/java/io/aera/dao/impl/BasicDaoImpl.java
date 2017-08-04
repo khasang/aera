@@ -1,6 +1,7 @@
 package io.aera.dao.impl;
 
 import io.aera.dao.BasicDao;
+import io.aera.entity.Document;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

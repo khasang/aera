@@ -1,0 +1,13 @@
+.uploadcontainer{
+    background-color: bisque;
+    padding: 1.667rem;
+}
+
+.has-error {
+    color: red;
+}
+
+.floatRight {
+    float: right;
+    margin-right: 2.5rem;
+}
