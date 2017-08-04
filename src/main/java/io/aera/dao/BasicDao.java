@@ -3,6 +3,7 @@ package io.aera.dao;
 import io.aera.entity.Story;
 import org.hibernate.Session;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public interface BasicDao<T> {
      * @param id - current ID of entity
      */
     void deleteById(long id);
+    boolean deleteById(Class<T> type, Serializable id);
 
     /**
      * @return List of entities

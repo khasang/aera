@@ -20,3 +20,26 @@ body {
 .panel-heading {
     font-size: 1.25rem;
 }
+
+.floatRight {
+    float: right;
+    margin-right: 2.5rem;
+}
+
+.col-md-7 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.col-md-3.control-label {
+    margin-left: 0.5rem;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.has-error {
+    color: red;
+}

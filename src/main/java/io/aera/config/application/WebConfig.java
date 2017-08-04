@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.aera.config", "io.aera.controller", "io.aera.model", "io.aera.service", "io.aera.dao"})
+@ComponentScan({"io.aera.config", "io.aera.controller", "io.aera.entity", "io.aera.service", "io.aera.dao"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver(){

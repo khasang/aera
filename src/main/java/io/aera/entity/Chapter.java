@@ -52,4 +52,24 @@ public class Chapter {
     public void setDateModified(LocalDateTime date) {
         this.dateModified = date;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Chapter)) return false;
+
+        Chapter chapter = (Chapter) o;
+
+        if (getId() != chapter.getId()) return false;
+        if (!getName().equals(chapter.getName())) return false;
+        return getGoldPrice() != null ? getGoldPrice().equals(chapter.getGoldPrice()) : chapter.getGoldPrice() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + (getGoldPrice() != null ? getGoldPrice().hashCode() : 0);
+        return result;
+    }
 }

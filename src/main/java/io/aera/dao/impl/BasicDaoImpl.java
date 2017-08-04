@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.List;
 
 @Transactional
@@ -45,6 +46,16 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         if(deletedEntity!=null){
             getCurrentSession().delete(deletedEntity);
         }
+    }
+
+    @Override
+    public boolean deleteById(Class<T> type, Serializable id) {
+        Object deletedEntity = getCurrentSession().load(type, id);
+        if(deletedEntity!=null){
+            getCurrentSession().delete(deletedEntity);
+            return true;
+        }
+        return false;
     }
 
     @Override
