@@ -12,7 +12,14 @@
 </head>
 <style>
     body{
-        background-image: url("<c:url value="../../static/images/background.jpg"/>");
+        background-image: <c:choose>
+            <c:when test="${empty story.backgroundImage.documentId}">
+                url("<c:url value="../../static/images/background.jpg"/>");
+            </c:when>
+            <c:otherwise>
+                url("<c:url value="/show-document-${story.id}-${story.backgroundImage.documentId}"/>")
+            </c:otherwise>
+        </c:choose>;
         background-repeat: repeat;
         background-position: center bottom;
         position: relative;
@@ -53,27 +60,5 @@
             </p>
         </div>
     </div>
-
-    <%--<div id="imageForm">
-        <div class="background-image">
-            <img id="backgroundImg" class="img-responsive img-rounded" width="160" height="160"
-                 src="<c:url value="../../static/images/no-avatar-big.png"/>"/>
-        </div>
-
-        <div>
-            <label>JPG or PNG, preferably square (will be resized to 160x160 and 28x28), max size 1 MB</label>
-            <div>
-                    <span role="button" class="btn btn-default fileinput-button" id="uploadImage">
-                        <span>Change picture</span>
-                        <input type="file" accept="image/jpeg, image/png" id="imageFileUploadInput" name="imageFile"/>
-                    </span>
-                <button type="button" onclick="uploadImage(${story.id}, $('#imageFileUploadInput')">Upload</button>
-            </div>
-        </div>
-    </div>--%>
-
-
-
-
 </body>
 </html>

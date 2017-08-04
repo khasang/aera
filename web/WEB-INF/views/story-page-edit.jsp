@@ -40,36 +40,6 @@
                 </div>
             </div>
 
-            <%--<div class="row">
-                <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label" for="backgroundImage">Story background</label>
-                        <form:input path="backgroundImage.content" type="file" id="backgroundImage" cssClass="form-control input-sm"/>
-                        <div class="has-error">
-                            <form:errors path="backgroundImage.content" cssClass="help-block"/>
-                        </div>
-                    <div class="col-md-7">
-
-                    </div>
-                </div>
-            </div>--%>
-            <%--<div class="row">
-                <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">Story background</label>
-                    <form method="post" action="/doUpload" enctype="multipart/form-data">
-                        <tr>
-                            <td>Pick file #1:</td>
-                            <td><input type="file" name="fileToUpload" size="50" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" value="Upload" /></td>
-                        </tr>
-                    </form>
-                    <div class="col-md-7">
-
-                    </div>
-                </div>
-            </div>--%>
-
             <div class="row">
                 <div class="form-actions floatRight">
                     <c:if test="${edit}">

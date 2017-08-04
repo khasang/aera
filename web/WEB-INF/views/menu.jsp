@@ -13,7 +13,7 @@
 <div class="header"><h1>AERA</h1></div>
 <div class="navigation">
     <a style="color: white" HREF="javascript:void(0);"
-                           OnClick="Javascript:GetAllStories();return false;">
+       OnClick="Javascript:GetAllStories();return false;">
         STORIES
     </a>
     Get Story by id <input type="text" id="storyId" value=""/>
