@@ -9,7 +9,7 @@ import java.util.List;
 public class PersonageType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "personage_type_id")
+    @Column(name = "id")
     private long id;
     @Column(name = "name")
     private String name;

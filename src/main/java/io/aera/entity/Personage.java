@@ -7,18 +7,16 @@ import javax.persistence.*;
 public class Personage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "personage_id")
+    @Column(name = "id")
     private long id;
     @Column(name = "name")
     private String name;
     @Column(name = "level")
     private int level;
 
-/*
-    @OneToMany
-    @Column(name = "personage_type_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "personage_types_id")
     private PersonageType personageType;
-*/
 
     public long getId() {
         return id;
@@ -44,7 +42,6 @@ public class Personage {
         this.level = level;
     }
 
-/*
     public PersonageType getPersonageType() {
         return personageType;
     }
@@ -52,5 +49,4 @@ public class Personage {
     public void setPersonageType(PersonageType personageType) {
         this.personageType = personageType;
     }
-*/
 }
