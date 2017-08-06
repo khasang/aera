@@ -6,9 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class PersonageTypeDaoImpl extends BasicDaoImpl<PersonageType> implements PersonageTypeDao {
-    @Autowired
-    private SessionFactory sessionFactory;
-
     public PersonageTypeDaoImpl(Class<PersonageType> entityClass) {
         super(entityClass);
     }
