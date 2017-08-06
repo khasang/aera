@@ -11,36 +11,40 @@ import java.util.List;
 @RequestMapping("/personage_type")
 @Controller
 public class PersonageTypeController {
-    @Autowired
-    private PersonageTypeService personageTypeService;
+    private final PersonageTypeService personageTypeService;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<PersonageType> getPersonageTypeList(){
-        return personageTypeService.getPersonageTypeList();
+    @Autowired
+    public PersonageTypeController(PersonageTypeService personageTypeService) {
+        this.personageTypeService = personageTypeService;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/create", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public PersonageType addTypePersonage(@RequestBody PersonageType personageType) {
+    public PersonageType createPersonageType(@RequestBody PersonageType personageType) {
         return personageTypeService.createPersonageType(personageType);
+    }
+
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PersonageType> getPersonageTypeList() {
+        return personageTypeService.getPersonageTypeList();
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public PersonageType typePersonage(@PathVariable(value = "id") String id) {
+    public PersonageType getPersonageTypeById(@PathVariable(value = "id") String id) {
         return personageTypeService.getPersonageTypeById(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public PersonageType updateTypePersonage(@RequestBody PersonageType personageType) {
+    public PersonageType updatePersonageType(@RequestBody PersonageType personageType) {
         return personageTypeService.updatePersonageType(personageType);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deletePersonage(@PathVariable(value = "id") String id) {
+    public void deletePersonageTypeById(@PathVariable(value = "id") String id) {
         personageTypeService.deletePersonageTypeById(Long.parseLong(id));
     }
 }

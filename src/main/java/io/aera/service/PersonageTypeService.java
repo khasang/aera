@@ -28,7 +28,7 @@ public interface PersonageTypeService {
     /**
      * Delete PersonageType from database by id
      *
-     * @param id - unique id for typePersonage (PK)
+     * @param id - unique id for PersonageType (PK)
      * @return
      */
     void deletePersonageTypeById(long id);
@@ -43,7 +43,7 @@ public interface PersonageTypeService {
 
     /**
      * Get all PersonageType from database
-     * @return list of TypePersonages
+     * @return list of PersonageTypes
      */
     List<PersonageType> getPersonageTypeList();
 }
