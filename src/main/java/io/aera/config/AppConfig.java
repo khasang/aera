@@ -50,7 +50,7 @@ public class AppConfig {
     }
 
     @Bean
-    PersonageTypeDao typePersonageDao() {
+    PersonageTypeDao personageTypeDao() {
         return new PersonageTypeDaoImpl(PersonageType.class);
     }
 
@@ -62,12 +62,5 @@ public class AppConfig {
         dataSource.setUsername(environment.getProperty("jdbc.postgresql.name"));
         dataSource.setPassword(environment.getProperty("jdbc.postgresql.password"));
         return dataSource;
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource());
-        return jdbcTemplate;
     }
 }
