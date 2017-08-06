@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping
 public class AppController {
-    @RequestMapping("/")
+    @RequestMapping("")
     public String personageControl() {
         return "personageControl";
     }
