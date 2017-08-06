@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class AppController {
     @RequestMapping("/")
-    public String typePersonage() {
-        return "typePersonage";
+    public String personageControl() {
+        return "personageControl";
     }
 }
