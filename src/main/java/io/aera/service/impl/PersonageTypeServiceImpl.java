@@ -14,27 +14,27 @@ public class PersonageTypeServiceImpl implements PersonageTypeService {
     private PersonageTypeDao personageTypeDao;
 
     @Override
-    public PersonageType createTypePersonage(PersonageType personageType) {
+    public PersonageType createPersonageType(PersonageType personageType) {
         return personageTypeDao.create(personageType);
     }
 
     @Override
-    public PersonageType updateTypePersonage(PersonageType personageType) {
+    public PersonageType updatePersonageType(PersonageType personageType) {
         return personageTypeDao.update(personageType);
     }
 
     @Override
-    public void deleteTypePersonById(long typeId) {
-        personageTypeDao.deleteById(typeId);
+    public void deletePersonageTypeById(long id) {
+        personageTypeDao.deleteById(id);
     }
 
     @Override
-    public List<PersonageType> getTypePersonageList() {
+    public List<PersonageType> getPersonageTypeList() {
         return personageTypeDao.getList();
     }
 
     @Override
-    public PersonageType getTypePersonageById(long typePersonId) {
-        return personageTypeDao.getById(typePersonId);
+    public PersonageType getPersonageTypeById(long id) {
+        return personageTypeDao.getById(id);
     }
 }

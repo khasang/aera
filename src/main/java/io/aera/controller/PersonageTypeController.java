@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/type_personage")
+@RequestMapping("/personage_type")
 @Controller
 public class PersonageTypeController {
     @Autowired
@@ -16,31 +16,31 @@ public class PersonageTypeController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<PersonageType> getTypePersonageList(){
-        return personageTypeService.getTypePersonageList();
+    public List<PersonageType> getPersonageTypeList(){
+        return personageTypeService.getPersonageTypeList();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
     public PersonageType addTypePersonage(@RequestBody PersonageType personageType) {
-        return personageTypeService.createTypePersonage(personageType);
+        return personageTypeService.createPersonageType(personageType);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public PersonageType typePersonage(@PathVariable(value = "id") String id) {
-        return personageTypeService.getTypePersonageById(Long.parseLong(id));
+        return personageTypeService.getPersonageTypeById(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public PersonageType updateTypePersonage(@RequestBody PersonageType personageType) {
-        return personageTypeService.updateTypePersonage(personageType);
+        return personageTypeService.updatePersonageType(personageType);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deletePersonage(@PathVariable(value = "id") String id) {
-        personageTypeService.deleteTypePersonById(Long.parseLong(id));
+        personageTypeService.deletePersonageTypeById(Long.parseLong(id));
     }
 }

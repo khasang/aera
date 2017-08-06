@@ -15,7 +15,7 @@ public interface PersonageTypeService {
      * @param personageType - PersonageType for creation
      * @return PersonageType
      */
-    PersonageType createTypePersonage(PersonageType personageType);
+    PersonageType createPersonageType(PersonageType personageType);
 
     /**
      * Update PersonageType at database
@@ -23,26 +23,27 @@ public interface PersonageTypeService {
      * @param personageType - PersonageType for update
      * @return PersonageType
      */
-    PersonageType updateTypePersonage(PersonageType personageType);
+    PersonageType updatePersonageType(PersonageType personageType);
 
     /**
      * Delete PersonageType from database by id
      *
-     * @param typeId - unique id for typePersonage (PK)
+     * @param id - unique id for typePersonage (PK)
      * @return
      */
-    void deleteTypePersonById(long typeId);
+    void deletePersonageTypeById(long id);
 
     /**
      * Get PersonageType from database by id
      *
-     * @param typePersonId - unique id for PersonageType (PK)
+     * @param id - unique id for PersonageType (PK)
      * @return PersonageType
      */
-    PersonageType getTypePersonageById(long typePersonId);
+    PersonageType getPersonageTypeById(long id);
 
     /**
+     * Get all PersonageType from database
      * @return list of TypePersonages
      */
-    List<PersonageType> getTypePersonageList();
+    List<PersonageType> getPersonageTypeList();
 }
